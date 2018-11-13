@@ -10,7 +10,7 @@
 			if($this->session->userdata('user_id')){
 			$data = array(
 				'post_id' => $post_id,
-				'author' => $this->session->userdata('username')
+				'author' => $this->session->userdata('username'),
 				'txt' => $this->input->post('txt')
 			);
 			return $this->db->insert('post_comment', $data);
