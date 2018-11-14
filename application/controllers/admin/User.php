@@ -63,6 +63,23 @@ class User extends CI_Controller
         
         $this->output->set_output(json_encode(['result' => 0, 'error' => 'User not created.']));
     }
+    //Display Users
+    public function viewUsers($user_id = null){
+        $this->load->view('admin/templates/header_view');
+
+		$data['users'] = $this->User_model->get_user($user_id);
+		$data['title'] = 'Dashboard';
+		$data['subtitle'] = 'Users';
+		
+		$this->load->view('admin/users_view', $data);
+		$this->load->view('admin/templates/footer_view');
+    }
+
+    // Edit Scrutiny Users
+
+    public function editUsers(){
+        
+    }
 
     
 }

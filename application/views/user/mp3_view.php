@@ -47,8 +47,9 @@ foreach($tracks as $track):
 							<a href="#"><?php echo $track['artist']; ?></a>
 						</span>
 						<span class="playlist-tract">
+                            <div style="margin-left: 20%;">
 							<a class="trackTitle" href="#"><?php echo $track['title']; ?></a>
-							
+                            </div>
 						</span>
 						
 						<span class="playlist-delete">
@@ -746,7 +747,7 @@ foreach($tracks as $track):
         width: 40%
     }
     .trackTitle{
-        margin-left:30%;
+        margin-left:10%;
     }
 }
 
