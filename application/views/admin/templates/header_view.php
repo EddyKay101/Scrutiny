@@ -87,6 +87,9 @@
                 <li>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">User Manager</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
+                       <li <?php if($this->uri->segment(3)=="mp3/insert"){echo 'class="active"';}?>><a href="<?php echo base_url(); ?>admin/user/viewUsers">Manage Users</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level collapse">
                        <li <?php if($this->uri->segment(3)=="mp3/insert"){echo 'class="active"';}?>><a href="<?php echo base_url(); ?>admin/user/insert">Add Users</a></li>
                     </ul>
                 </li>
