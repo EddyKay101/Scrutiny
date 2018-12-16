@@ -360,7 +360,7 @@
 
 
 
-<section id="pricing" class="comments gray-section">
+<section id="pricing" class="navy-section testimonials">
     <div class="container">
     
         <div class="row m-b-lg">
@@ -429,10 +429,10 @@
        </div> 
           
         
-          <div class="row wrapper border-bottom white-bg page-heading" id="connect_data">
+          <div class="row wrapper border-bottom white-bg page-heading" style="background:#f4f4f4;" id="connect_data">
           <?php $p = $this->session->userdata['username'];?>
                     
-                        <h2 id="connecth2"><?php echo "Welcome ".$p;?></h2>
+                        <h2 id="connecth2" style="color:#e6af4b"><?php echo "Welcome ".$p;?></h2>
                          
               <div class="holders">
               <div class="holders-inner connect" id="connect1">
@@ -442,7 +442,7 @@
                     
                         <li class="connectli"><a class="connecta" href="<?php echo site_url('user/members/edit/'.$p);?>" id="connecta1"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Manage Your Profile</a></li><br>
                         <li class="connectli"><a class="connecta" href="<?=site_url('user/uploads/index')?>" id="connecta2"><i class="fa fa-headphones" aria-hidden="true"></i> Upload Music</a></li><br>
-                        <li class="connectli"><a class="connecta" href="<?=site_url('user/friends/index')?>" id="connecta3"><i class="fa fa-users" aria-hidden="true"></i> Manage Friends</a></li><br>
+                        <li class="connectli"><a class="connecta" href="<?=site_url('user/friends/index')?>" id="connecta3"><i class="fa fa-users" aria-hidden="true"></i> Friends</a></li><br>
                         <li class="connectli"><a class="connecta" href="<?=site_url('user/chats/view_chats')?>" id="connecta4"><i class="fa fa-envelope" aria-hidden="true"></i> Messages</a></li><br>
                         <li class="connectli"><a class="connecta" href="<?=site_url('user/home/logout')?>" id="connecta5"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a></li>
                     </ul>
@@ -514,40 +514,6 @@
 
 <!--Social-->
 
-<section id="contact" class="navy-section facebook">
-    <div class="container">
-        <div class="row m-b-lg">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>Connect with Scrutiny</h1>
-                <!--<iframe src="https://mixlr.com/users/4974648/embed?color=080446" id = 'mixlr' width="64%" height="160px" scrolling="no" frameborder="no" marginheight="0" marginwidth="0"></iframe>-->
-                <iframe src="https://mixlr.com/users/4974648/embed?color=e6af4b&autoplay=true" id = 'mixlr' width="64%" height="160px" scrolling="no" frameborder="no" marginheight="0" marginwidth="0"></iframe>
-                <!--<iframe src="https://mixlr.com/users/4974648/embed?color=e6af4b&autoplay=true width="100%" height="180px" scrolling="no" frameborder="no" marginheight="0" marginwidth="0"></iframe><small><a href="http://mixlr.com/scrutiny-stream" style="color:#1a1a1a;text-align:left; font-family:Helvetica, sans-serif; font-size:11px;">Scrutiny Stream is on Mixlr</a></small>-->
-                
-            </div>
-        </div>
-        <div class="row m-b-lg" id="fb_root">
-
-            <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-            <div class="col-lg-3 col-lg-offset-3">
-                <div class="fb-page" data-href="https://www.facebook.com/ScrutinyNG" data-tabs="timeline" data-width="300px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/ScrutinyNG"><a href="https://www.facebook.com/ScrutinyNG">Scrutiny</a></blockquote></div></div><br><br>
-            </div>
-            <div class="col-lg-4">
-                <a class="twitter-timeline"  href="https://twitter.com/Scrutinyng" data-widget-id="696385952579772416">Tweets by @Scrutinyng</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            </div>
-        </div>
-        
-        
-    </div>
-</section>
 
 <!--Social-->
 <section id="contact" class="gray-section contact">
