@@ -20,10 +20,10 @@ foreach($videos as $video):
 <img src ="<?php echo base_url();?>/public/img/<?php echo $video['media_img'];?>" width = '320px' height='250px'/>
 </p>
 <h3><?php echo $video['title'];?></h3>
-<small class="post-date">Posted on: <?php echo $video['date_created'];?></small><br>
+<small class="post-date">Posted on: <?php echo $video['date_created'];?></small>
 <?php //echo word_limiter($video['entry_text'], 50);?>
-<br><br>
-<p><a class="btn btn-default" href="<?php echo site_url('/videos/'.$video['video_id']); ?>">Read More</a></p>
+<br>
+<p><a class="btn btn-primary" href="<?php echo site_url('/videos/'.$video['video_id']); ?>">Read More</a></p>
 </div>
 <?php endforeach; ?>
 </div>

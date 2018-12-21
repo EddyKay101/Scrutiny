@@ -20,10 +20,10 @@ foreach($artists as $artist):
 <img src ="<?php echo base_url();?>/public/img/<?php echo $artist['media_img'];?>" width = '320px' height='250px'/>
 </p>
 <h3><?php echo $artist['artist'];?></h3>
-<small class="post-date">Posted on: <?php echo $artist['date_created'];?></small><br>
+<small class="post-date">Posted on: <?php echo $artist['date_created'];?></small>
 <?php //echo word_limiter($artist['entry_text'], 50);?>
-<br><br>
-<p><a class="btn btn-default" href="<?php echo site_url('/artists/'.$artist['entry_id']); ?>">Read More</a></p>
+<br>
+<p><a class="btn btn-primary" href="<?php echo site_url('/artists/'.$artist['entry_id']); ?>">Read More</a></p>
 </div>
 <?php endforeach; ?>
 </div>

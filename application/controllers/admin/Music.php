@@ -42,8 +42,29 @@ class Music extends CI_Controller
                 }else{
                     $picture = '';
                 }
+            }
+
+             if(!empty($_FILES['usertrack']['name'])){
+                $config['upload_path'] = './public/tracks/';
+                $config['allowed_types'] = 'mp3|wav|3gp|aa|aac|mp4|mpc|msv|ogg|oga|wma|wv|mpeg|mpga|mp2|m4p';
+                 $config['max_size'] = '0';
+                 $config['overwrite'] = 'TRUE';
+            //max file name size
+            	//$config['max_filename'] = '500';
+                $config['file_name'] = $_FILES['usertrack']['name'];
+                
+                //Load upload library and initialize configuration
+                $this->load->library('upload',$config);
+                $this->upload->initialize($config);
+                
+                if($this->upload->do_upload('usertrack')){
+                    $uploadTrack = $this->upload->data();
+                    $track= $uploadTrack['file_name'];
+                }else{
+                    $track = '';
+                }
             }else{
-                $picture = '';
+                $track = '';
             }
             
             //Prepare array of user data
@@ -52,7 +73,9 @@ class Music extends CI_Controller
                 'title' => $this->input->post('title'),
                 'slug' => $slug,
                 'entry_text' => $this->input->post('entry_text'),
-                'media_img' => $picture
+                'media_img' => $picture,
+                'music_location' => $track
+                // 'music_location' => str_replace("_", " ",$track)
             );
             
             //Pass user data to model

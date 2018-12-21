@@ -1,10 +1,17 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /mpt/
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ index.php?/$1 [L]
+RewriteEngine on
+RewriteCond $1 !^(index\.php|assets|images|js|css|uploads|favicon.png)
 
-    php_value upload_max_filesize 200M
-	php_value post_max_size 200M
-</IfModule>
+
+
+
+RewriteBase /mpt
+
+RewriteCond %{REQUEST_URI} ^system.*
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+RewriteCond %{REQUEST_URI} ^application.*
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+REwriteRule ^(.*)$ index.php?/$1 [L]

@@ -19,10 +19,10 @@ foreach($entries as $entry):
 <img src ="<?php echo base_url();?>/public/img/<?php echo $entry['media_img'];?>" width = '320px' height='250px'/>
 </p>
 <h3><?php echo $entry['title'];?></h3>
-<small class="post-date">Posted on: <?php echo $entry['date_created'];?></small><br>
+<small class="post-date">Posted on: <?php echo $entry['date_created'];?></small>
 <?php //echo word_limiter($entry['entry_text'], 50);?>
-<br><br>
-<p><a class="btn btn-default" href="<?php echo site_url('/reviews/'.$entry['entry_id']); ?>">Read More</a></p>
+<br>
+<p><a class="btn btn-primary" href="<?php echo site_url('/reviews/'.$entry['entry_id']); ?>">Read More</a></p>
 </div>
 <?php endforeach; ?>
 </div>
