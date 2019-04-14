@@ -130,7 +130,7 @@ class Home extends CI_Controller
 					$unread = '<img alt="image" class="img-circle" src="'.base_url().'/public/user_img/'.$img.'">&nbsp;<strong style="font-weight: lighter;">'.$message->username.'</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 					$unread .='<strong style="font-weight: lighter;">'.$message->chat_message_content.'</strong><br>';
 				}
-				$chat_html .='<li style ="list-style-type:none;" >';
+				$chat_html .='<li class="chat-list" style ="list-style-type:none;" >';
 				$chat_html .='
                  <a href="'.base_url().'chats/'.$message->user_id.'" onclick="myFunction()" style="text-transform:none;"><div class="dropdown-messages-box">
             <small class="pull-right">'.$this->_time_ago($message->date_created).'</small>'.$unread.'                                                             

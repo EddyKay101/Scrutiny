@@ -105,16 +105,7 @@
   margin:auto;
   margin-top:10%;
 }
-/* #w_submit{
-  
-  background-color: rgb(234, 236, 239);
-  position: relative;
-  top:41px;
-  
-  border:none;
-  
-} */
-  }
+}
   /*Phones*/
 
   /*Phones (5/SE)*/
@@ -621,14 +612,12 @@ if ($members['media_img'] != "") {
                             <div class="ibox-content profile-content">
                                 <h4><strong><?php echo $members['username']; ?></strong></h4>
                                 <p><i class="fa fa-map-marker"></i> <?php echo $members['Location']; ?></p>
-                                <h5>
-                                    About me
-                                </h5>
+                                <p><i class="fa fa-user"></i> About me</p>
                                 <p>
                                     &nbsp;&nbsp;<?php echo $members['info']; ?>
                                 </p>
                                 <div class="row m-t-lg">
-                                    <div class="col-md-4">
+                                    <div class="profile-sub-text col-md-4">
                                        
                                         <h5><strong><i class="fa fa-headphones" aria-hidden="true"></i><?php echo $count_tracks; ?></strong> Tracks</h5>
                                     </div>
@@ -982,10 +971,10 @@ if ($members['media_img'] != "") {
                                                                     <small id="trackTitle"> - <?php echo $track['title']; ?></small>
                                                                 </a>
                                                                 <span class="album-meta">
-                                                                    <a href="#" target="_blank">
+                                                                    <!-- <a href="#" target="_blank">
                                                                         <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/apple.png" alt="">
                                                                         <img class="light" src="<?php echo base_url(); ?>public/images/media-player/apple-light.png" alt="">
-                                                                    </a>
+                                                                    </a> -->
                                                                     <?php if ($track['downloadable'] == "true") :
                                                                     ?>
                                                                     <a href="<?php echo $track['location']; ?>" target="_blank" download>
@@ -1000,10 +989,10 @@ if ($members['media_img'] != "") {
                                                                     </a>
                                                                 <?php endif;
                                                                 ?>
-                                                                    <a href="#" target="_blank">
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/soundcloud.png" alt="">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/soundcloud-light.png" alt="">
-                                                                    </a>
+                                                                    <!-- <a href="#" target="_blank">
+                                                                        <img class="drak" src="<?php// echo base_url(); ?>public/images/media-player/soundcloud.png" alt="">
+                                                                        <img class="light" src="<?php// echo base_url(); ?>public/images/media-player/soundcloud-light.png" alt="">
+                                                                    </a> -->
                                                                 </span>
                                                             </li>
                                                             <?php
@@ -1339,10 +1328,10 @@ if ($members['media_img'] != "") {
                                                                     <small id="trackTitle"> - <?php echo $track['title']; ?></small>
                                                                 </a>
                                                                 <span class="album-meta">
-                                                                    <a href="#" target="_blank">
+                                                                    <!-- <a href="#" target="_blank">
                                                                         <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/apple.png" alt="">
                                                                         <img class="light" src="<?php echo base_url(); ?>public/images/media-player/apple-light.png" alt="">
-                                                                    </a>
+                                                                    </a> -->
 
                                                                      <?php if ($track['downloadable'] == "true") :
                                                                     ?>
@@ -1358,10 +1347,10 @@ if ($members['media_img'] != "") {
                                                                     </a>
                                                                 <?php endif;
                                                                 ?>
-                                                                    <a href="<?php echo $track['location']; ?>" target="_blank" download>
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/soundcloud.png" alt="">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/soundcloud-light.png" alt="">
-                                                                    </a>
+                                                                    <!-- <a href="<?php// echo $track['location']; ?>" target="_blank" download>
+                                                                        <img class="drak" src="<?php// echo base_url(); ?>public/images/media-player/soundcloud.png" alt="">
+                                                                        <img class="light" src="<?php //echo base_url(); ?>public/images/media-player/soundcloud-light.png" alt="">
+                                                                    </a> -->
                                                                 </span>
                                                             </li>
                                                             <?php
@@ -1718,10 +1707,10 @@ if ($members['media_img'] != "") {
                                                                     <small id="trackTitle"> - <?php echo $track['title']; ?></small>
                                                                 </a>
                                                                 <span class="album-meta">
-                                                                    <a href="#" target="_blank">
+                                                                    <!-- <a href="#" target="_blank">
                                                                         <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/apple.png" alt="">
                                                                         <img class="light" src="<?php echo base_url(); ?>public/images/media-player/apple-light.png" alt="">
-                                                                    </a>
+                                                                    </a> -->
                                                                     
                                                                      <?php if ($track['downloadable'] == "true") :
                                                                     ?>
@@ -1737,10 +1726,10 @@ if ($members['media_img'] != "") {
                                                                     </a>
                                                                 <?php endif;
                                                                 ?>
-                                                                    <a href="#" target="_blank">
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/soundcloud.png" alt="">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/soundcloud-light.png" alt="">
-                                                                    </a>
+                                                                    <!-- <a href="#" target="_blank">
+                                                                        <img class="drak" src="<?php// echo base_url(); ?>public/images/media-player/soundcloud.png" alt="">
+                                                                        <img class="light" src="<?php// echo base_url(); ?>public/images/media-player/soundcloud-light.png" alt="">
+                                                                    </a> -->
                                                                 </span>
                                                             </li>
                                                             <?php
