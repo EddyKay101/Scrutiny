@@ -5,10 +5,6 @@ ob_start();
 		{
 			parent::__construct();
 			$this->load->model('User_model');
-			/*$user_id = $this->session->userdata('user_id');
-			if(!$user_id){
-				$this->logout();
-			}*/
 		} 
 
 		public function index()
@@ -21,7 +17,7 @@ ob_start();
 			$this->load->view('user/templates/header_view_subpage');	
 			$this->load->view('user/profile_view', $data);
 			
-			$this->load->view('user/templates/footer_view_subpage');
+			$this->load->view('user/templates/footer_view');
 		}
 
 	}

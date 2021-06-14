@@ -44,7 +44,7 @@ class Connect extends CI_Controller{
 		$this->load->view('user/templates/header_view_subpage', $data);	
 		$this->load->view('user/connect_view', $data);
 		$this->load->view('user/mp3_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');		
+		$this->load->view('user/templates/footer_view');		
 	}
 
 	public function updateTrueDownloadable(){

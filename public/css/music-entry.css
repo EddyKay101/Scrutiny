@@ -1,0 +1,73 @@
+.music-post {
+    margin-top: 20rem;
+}
+
+.music-post .wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-holder {
+    width: 50%;
+    height: 300px;
+    display: block;
+    position: relative;
+    margin: auto;
+}
+
+.image-holder img {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+}
+
+.article {
+    width: 50%;
+    margin: auto;
+    line-height: 3;
+}
+
+.comments {
+    width: 50%;
+    margin: auto;
+}
+
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 1.2rem;
+}
+
+.comments .comment-count {
+    font-size: 1.4rem;
+}
+
+.add-comment {
+    width: 50%;
+    margin: auto;
+}
+
+.comment-wr {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.comment-p {
+    margin-bottom: 0 !important;
+}
+
+@media(max-width: 932px) {
+
+    .image-holder,
+    .article,
+    .comments,
+    .add-comment {
+        width: 100%;
+    }
+}

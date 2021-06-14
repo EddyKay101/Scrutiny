@@ -27,7 +27,7 @@ ob_start();
 			$data['pic'] = $this->User_model->get_users($user_id);
 			$this->load->view('user/templates/header_view_subpage', $data);	
 			$this->load->view('user/friends_view', $data);
-			$this->load->view('user/templates/footer_view_subpage');
+			$this->load->view('user/templates/footer_view');
 
 		}
 
@@ -37,15 +37,12 @@ ob_start();
 			$data['friends'] = $this->User_model->get_friends();
 			
 			$data['user_id'] = $this->session->userdata('user_id');
-			$data['notification_count'] =$this->Notification_model->get_notification($user_id);
-			$data['notification'] = $this->Notification_model->get_notification_count($user_id);
 			$data['status'] =  "read";
 			$data['read'] = "unread";
-			$data['chat_count'] = $this->Chats_model->get_chat_message_count($user_id);	
-			$data['pic'] = $this->User_model->get_users($user_id);		
+	
 		$this->load->view('user/templates/header_view_subpage');
 		$this->load->view('user/members_entry_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 			
 		
 		}

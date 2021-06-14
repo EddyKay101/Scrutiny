@@ -23,6 +23,7 @@ class User_model extends CI_Model{
 		return $q->result_array();
 		
 	}
+	
 	public function get_user($user_id = null){
 	 if($user_id === null){
 	 $i = $this->db->get('users');

@@ -1,1966 +1,1272 @@
- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-9983809730412655",
-    enable_page_level_ads: true
-  });
-</script>
-<style>
+<?php
+if ($members['media_img'] != "") {
+    $img = $members['media_img'];
+} else {
+    $img = "blank_user.png";
+}
+?>
+<?php
+$session = $this->session->userdata('user_id');
+//$friends = 0;
+
+if ($session == $members['user_id']):
+
+?>
+<title>Scrutiny | <?php echo $members['username']; ?></title>
+
+<div class="page-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="profile-wrapper">
+                    <div class="profile-title text-center">
+                        <h5>Profile Detail</h5>
+                    </div>
+                    <div class="profile-body">
+                        <div class="img-wrapper">
+                            <img alt="image" class="img-fluid"
+                                src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>">
+                        </div>
+
+                        <div class="profile-content mt-5 mb-5">
+                            <div class="profile-info">
+                                <div class="left">
+                                    <div>
+                                        <h4><strong><?php echo $members['username']; ?></strong></h4>
+                                        <p><i class="fa fa-map-marker"></i> <?php echo $members['Location']; ?></p>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            About
+                                        </h5>
+                                        <p>
+                                            <?php echo $members['info']; ?>
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="right">
+                                    <h5><strong><i class="fa fa-headphones mr-3"
+                                                aria-hidden="true"></i><?php echo $count_tracks; ?></strong> Tracks
+                                    </h5>
+
+                                    <h5><strong><i class="fa fa-users mr-3"
+                                                aria-hidden="true"></i><?php echo $count_friends; ?></strong>
+                                        Following
+                                    </h5>
+
+                                    <h5><strong><i class="fa fa-users mr-3"
+                                                aria-hidden="true"></i><?php echo $count_followers; ?></strong>
+                                        Followers</h5>
+                                </div>
+                            </div>
+                        </div>
 
 
-/*Phones (6/7/8)*/
-@media only screen 
-  and (min-device-width: 360px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
-    
-    .modal{
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                        <div class="profile-content">
+
+                            <div class="profile-mgt-menu">
+                                <div class="left">
+                                    <p><a class="profile-mgt"
+                                            href="<?php echo site_url('user/members/edit/' . $members['username']); ?>"
+                                            id=""><i class="fa fa-list-alt mr-3" aria-hidden="true"></i>Edit
+                                            Information</a></p>
+
+
+
+
+                                    <p><a class="profile-mgt" href="<?php echo site_url('uploadMusic'); ?>"><i
+                                                class=" fa fa-headphones mr-3" aria-hidden="true"></i>Upload Music</a>
+                                    </p>
+                                </div>
+                                <div class="right">
+                                    <p><a class="profile-mgt" href="<?php echo site_url('user/chats/view_chats'); ?>"
+                                            id=""><i class="fa fa-envelope mr-3" aria-hidden="true"></i>Messages</a>
+                                    </p>
+                                    <p><a data-toggle="modal" data-target="#post-modal" class="profile-mgt" href=""><i
+                                                class="fa fa-clipboard mr-3" aria-hidden="true"></i>Status</a></p>
+
+                                    <p><a class="profile-mgt" href="<?php echo site_url('dashboard'); ?>" id=""><i
+                                                class="fas fa-tachometer-alt mr-3"></i></i>Dashboard</a></p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="post-modal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">What are you thinking?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea class="modal-post-text" name="content" id="modal-text" cols="40" rows="3">
+                                    </textarea>
+                            <!-- <div id="text" contentEditable="true" hidefocus="true">
+                                    </div> -->
+                        </div>
+                        <div class="modal-footer">
+                            <button id="post-modal-button" type="submit" class="button">Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-8 col-sm-12">
+                <div class="activity-wrapper">
+                    <div class="activity-title">
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <div class="panel-options">
+                                        <ul class="nav nav-tabs panel-tabs">
+                                            <li class="active mr-5"><a href="#tab-1" data-toggle="tab">Activities</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <div class="tab-content">
+                                        <div class="left-content col-md-4 col-sm-12 connections">
+                                            <div>
+                                                <div class="follow-heading">
+                                                    <h3><i class="fa fa fa-users"></i>Following</h3>
+                                                    <small><i class="fa fa-tim"></i><?php echo $count_friends; ?>
+                                                        following.</small>
+
+                                                </div>
+
+
+                                                <div class="follow-content">
+                                                    <?php
+foreach ($friends as $friend):
+    if ($friend['media_img'] != "") {
+        $img = $friend['media_img'];
+    } else {
+        $img = "blank_user.png";
+    }
+    ?>
+                                                    <div class="feed-element mb-3 mr-3">
+                                                        <div class="follow-img-container ">
+
+                                                            <a class="aFollower"
+                                                                href="<?php echo site_url('/members/' . $friend['user_id']); ?>"><span
+                                                                    class="tooltiptext"><?php echo $friend['username']; ?></span><img
+                                                                    alt="image" class="img-circle"
+                                                                    src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>"></a>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+endforeach;
+?>
+                                                </div>
+                                                <div class="follow-heading">
+                                                    <h3><i class="fa fa fa-users"></i>Followers</h3>
+
+                                                    <small><i class="fa fa-tim"></i><?php echo $count_followers; ?>
+                                                        followers</small>
+                                                </div>
+
+                                                <div class="follow-content">
+                                                    <?php
+
+foreach ($followers as $follower):
+    if ($follower['media_img'] != "") {
+        $img = $follower['media_img'];
+    } else {
+        $img = "blank_user.png";
+    }
+
+    ?>
+                                                    <div class="feed-element mb-3 mr-3">
+
+                                                        <div class="follow-img-container ">
+                                                            <a class="aFollower"
+                                                                href="<?php echo site_url('/members/' . $follower['user_id']); ?>"><span
+                                                                    class="tooltiptext"><?php echo $follower['username']; ?></span><img
+                                                                    alt="image" class="img-circle"
+                                                                    src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>"></a>
+
+                                                        </div>
+                                                    </div>
+                                                    <?php
+endforeach;
+?>
+                                                </div>
+
+                                                <!-- Tracks -->
+                                                <div class="single-album">
+                                                    <div class="noo-main single single-noo_album">
+                                                        <div class="noo_album">
+                                                            <div class="album-intro col-xs-12">
+                                                                <div class="album-intro-wrap">
+                                                                    <div class="album-media-player">
+                                                                        <div class="single-album-playlist">
+                                                                            <ul>
+                                                                                <?php
+$i = 0;
+foreach ($tracks as $track):
+    ++$i;
+
+    ?>
+
+                                                                                <li id="album_<?php echo $i; ?>"
+                                                                                    data-id="album_<?php echo $i; ?>"
+                                                                                    data-artist="<a href=&quot;#&quot;><?php echo $track['artist']; ?></a>"
+                                                                                    data-file="<?php echo base_url(); ?>/public/user_tracks/<?php echo $track['location']; ?>"
+                                                                                    data-thumb="<img width=&quot;768&quot; height=&quot;1000&quot; src=&quot;<?php echo base_url(); ?>public/images/album/<?php echo $track['art']; ?>&quot; alt=&quot;rock16&quot;/>"
+                                                                                    data-name="<?php echo $track['title']; ?>"
+                                                                                    data-url="#"
+                                                                                    data-album="<?php echo $track['artist']; ?>">
+                                                                                    <a href="javascript:void(0)"
+                                                                                        class="noodata-play">
+                                                                                        <span
+                                                                                            class="current-active-play">
+                                                                                            <i class="fa fa-play"></i>
+                                                                                        </span>
+
+                                                                                        <small class="track-title">
+                                                                                            <?php echo $track['title']; ?></small>
+                                                                                    </a>
+                                                                                    <span class="album-meta">
+
+                                                                                        <?php if ($track['downloadable'] == "true"):
+    ?>
+                                                                                        <a href="<?php echo $track['location']; ?>"
+                                                                                            target="_blank" download>
+                                                                                            <i
+                                                                                                class="fas fa-download"></i>
+                                                                                        </a>
+                                                                                        <?php
+else:
+?>
+                                                                                        <a href="<?php echo $track['location']; ?>"
+                                                                                            target="_blank" download>
+
+                                                                                        </a>
+                                                                                        <?php
+endif;
+?>
+                                                                                    </span>
+                                                                                </li>
+                                                                                <?php
+endforeach;
+?>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Tracks -->
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Activity Section -->
+                                        <div class="col-md-8 col-sm-12 mt-3 activity">
+
+                                            <div class="feed">
+
+
+                                                <?php
+$segment = $this->uri->segment(2);
+foreach ($posts as $post):
+    if ($post['media_img'] != "") {
+        $img = $post['media_img'];
+    } else {
+        $img = "blank_user.png";
+    }
+    ?>
+
+
+                                                <div class="social-feed-box">
+                                                    <?php $data = array('onsubmit' => "checkIfEmpty(this)");?>
+                                                    <?php echo form_open('user/members/create/' . $post['post_id'], $data); ?>
+                                                    <input type="hidden" name="comms"
+                                                        value="<?php echo $post['post_id']; ?>">
+                                                    <input type="hidden" name="seg" value="<?php echo $segment; ?>">
+                                                    <div class="social-avatar">
+                                                        <div class="avatar-element">
+                                                            <div class="social-img-container">
+                                                                <a href="">
+                                                                    <img alt="image" class="img-circle"
+                                                                        src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>">
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="user-comment">
+                                                            <small
+                                                                class="text-muted"><?php echo dateFormat('d/m/Y h:ia', $post['date_created']); ?></small>
+                                                            <div class="social-body">
+                                                                <p id="p_post">
+                                                                    <?php echo $post['entry_text']; ?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment-response" id="comment_section">
+                                                        <?php
+    foreach ($post_comments as $comments):
+        if ($post['post_id'] == $comments['post_id']):
+            if ($comments['media_img'] != "") {
+                $img = $comments['media_img'];
+            } else {
+                $img = "blank_user.png";
+            }
+            ?>
+                                                        <div class="social-comment">
+                                                            <div class="avatar-element  mr-3">
+                                                                <div class="social-img-container">
+                                                                    <a
+                                                                        href="<?php echo site_url('/members/' . $comments['user_id']); ?>">
+                                                                        <img alt="image" class="img-circle"
+                                                                            src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="comment-body">
+                                                                <div class="user-left">
+                                                                    <a
+                                                                        href="<?php echo base_url(); ?>/members/<?php echo $comments['user_id']; ?>">
+                                                                        <?php echo $comments['username']; ?>
+                                                                    </a>
+                                                                </div>
+
+                                                                <?php echo $comments['txt']; ?>
+
+                                                                <div class="user-right">
+                                                                    <small
+                                                                        class="text-muted"><?php echo dateFormat('d/m/Y h:ia', $comments['date']); ?></small>
+                                                                </div>
+
+
+                                                            </div>
+
+                                                        </div>
+                                                        <?php endif;
+    endforeach;?>
+
+                                                        <div class="social-comment">
+
+
+                                                            <div class="comment-text">
+
+                                                                <textarea onkeyup="enableDisable(this)"
+                                                                    class="form-control" placeholder="Write comment..."
+                                                                    name="txt" id="comment_textarea"></textarea>
+                                                                <div class="button-container">
+                                                                    <button onload="disableBtn()"
+                                                                        class="comment-btn mt-3" type="submit"
+                                                                        id="c_submit" disabled="disabled"
+                                                                        onclick="checkIfEmpty()">Post</button>
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    <?php echo form_close(); ?>
+                                                </div>
+
+                                                <?php
+
+endforeach;
+?>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Is friend -->
+<?php
+    elseif ($members && $isfriend):
+    ?>
+<title>Scrutiny | <?php echo $members['username']; ?></title>
+
+<div class="page-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="profile-wrapper">
+                    <div class="profile-title text-center">
+                        <h5>Profile Detail</h5>
+                    </div>
+                    <div class="profile-body">
+                        <div class="img-wrapper">
+                            <img alt="image" class="img-fluid"
+                                src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>">
+                        </div>
+
+                        <div class="profile-content mt-5 mb-5">
+                            <div class="profile-info">
+                                <div class="left">
+                                    <div>
+                                        <h4><strong><?php echo $members['username']; ?></strong></h4>
+                                        <p><i class="fa fa-map-marker"></i> <?php echo $members['Location']; ?></p>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            About
+                                        </h5>
+                                        <p>
+                                            <?php echo $members['info']; ?>
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="right">
+                                    <h5><strong><i class="fa fa-headphones mr-3"
+                                                aria-hidden="true"></i><?php echo $count_viewy_tracks; ?></strong>
+                                        Tracks
+                                    </h5>
+
+                                    <h5><strong><i class="fa fa-users mr-3"
+                                                aria-hidden="true"></i><?php echo $u_count_friends; ?></strong>
+                                        Following
+                                    </h5>
+
+                                    <h5><strong><i class="fa fa-users mr-3"
+                                                aria-hidden="true"></i><?php echo $u_count_followers; ?></strong>
+                                        Followers</h5>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="profile-content">
+
+                            <div class="user-button py-3">
+                                <div>
+                                    <input type="hidden" name="see" id="see" value="<?php echo $members['user_id']; ?>">
+                                    <a href="<?php echo base_url() . 'chats/' . $members['user_id']; ?>"
+                                        class="profile-mgt"><i class="fa fa-envelope"></i>
+                                        Message</a>
+                                </div>
+
+                                <div>
+                                    <?php
+echo form_open_multipart('user/members/unfollow');
+
+?>
+                                    <input type="hidden" name="friend_id" value="<?php echo $members['user_id']; ?>" />
+                                    <button type="submit" class="button rounded-item"><i class="fas fa-unlink"></i>
+                                        Unfollow</button>
+
+                                    <!-- <a href="<?php echo base_url() . 'user/members/unfollow';?>"
+                                            class="profile-mgt"><i class="fas fa-unlink"></i>
+                                            Unfollow</a> -->
+                                    <?php
+echo form_close();
+?>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="post-modal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">What are you thinking?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea class="modal-post-text" name="content" id="modal-text" cols="40" rows="3">
+                                    </textarea>
+                            <!-- <div id="text" contentEditable="true" hidefocus="true">
+                                    </div> -->
+                        </div>
+                        <div class="modal-footer">
+                            <button id="post-modal-button" type="submit" class="button">Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-8 col-sm-12">
+                <div class="activity-wrapper">
+                    <div class="activity-title">
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <div class="panel-options">
+                                        <ul class="nav nav-tabs panel-tabs">
+                                            <li class="active mr-5"><a href="#tab-1" data-toggle="tab">Activities</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <div class="tab-content">
+                                        <div class="left-content col-md-4 col-sm-12 connections">
+                                            <div>
+                                                <div class="follow-heading">
+                                                    <h3><i class="fa fa fa-users"></i>Following</h3>
+                                                    <small><i class="fa fa-tim"></i><?php echo $u_count_friends; ?>
+                                                        following.</small>
+
+                                                </div>
+
+
+                                                <div class="follow-content">
+                                                    <?php
+foreach ($u_friends as $u_friend):
+    if ($u_friend['media_img'] != "") {
+        $img = $u_friend['media_img'];
+    } else {
+        $img = "blank_user.png";
+    }
+    ?>
+                                                    <div class="feed-element mb-3 mr-3">
+                                                        <div class="follow-img-container ">
+
+                                                            <a class="aFollower"
+                                                                href="<?php echo site_url('/members/' . $u_friend['user_id']); ?>"><span
+                                                                    class="tooltiptext"><?php echo $u_friend['username']; ?></span><img
+                                                                    alt="image" class="img-circle"
+                                                                    src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>"></a>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+endforeach;
+?>
+                                                </div>
+                                                <div class="follow-heading">
+                                                    <h3><i class="fa fa fa-users"></i>Followers</h3>
+
+                                                    <small><i class="fa fa-tim"></i><?php echo $u_count_followers; ?>
+                                                        followers</small>
+                                                </div>
+
+                                                <div class="follow-content">
+                                                    <?php
+
+foreach ($u_followers as $u_follower):
+    if ($u_follower['media_img'] != "") {
+        $img = $u_follower['media_img'];
+    } else {
+        $img = "blank_user.png";
+    }
+
+    ?>
+                                                    <div class="feed-element mb-3 mr-3">
+
+                                                        <div class="follow-img-container ">
+                                                            <a class="aFollower"
+                                                                href="<?php echo site_url('/members/' . $u_follower['user_id']); ?>"><span
+                                                                    class="tooltiptext"><?php echo $u_follower['username']; ?></span><img
+                                                                    alt="image" class="img-circle"
+                                                                    src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>"></a>
+
+                                                        </div>
+                                                    </div>
+                                                    <?php
+endforeach;
+?>
+                                                </div>
+
+                                                <!-- Tracks -->
+                                                <div class="single-album">
+                                                    <div class="noo-main single single-noo_album">
+                                                        <div class="noo_album">
+                                                            <div class="album-intro col-xs-12">
+                                                                <div class="album-intro-wrap">
+                                                                    <div class="album-media-player">
+                                                                        <div class="single-album-playlist">
+                                                                            <ul>
+                                                                                <?php
+$i = 0;
+foreach ($viewy_track as $track):
+    ++$i;
+
+    ?>
+
+                                                                                <li id="album_<?php echo $i; ?>"
+                                                                                    data-id="album_<?php echo $i; ?>"
+                                                                                    data-artist="<a href=&quot;#&quot;><?php echo $track['artist']; ?></a>"
+                                                                                    data-file="<?php echo base_url(); ?>/public/user_tracks/<?php echo $track['location']; ?>"
+                                                                                    data-thumb="<img width=&quot;768&quot; height=&quot;1000&quot; src=&quot;<?php echo base_url(); ?>public/images/album/<?php echo $track['art']; ?>&quot; alt=&quot;rock16&quot;/>"
+                                                                                    data-name="<?php echo $track['title']; ?>"
+                                                                                    data-url="#"
+                                                                                    data-album="<?php echo $track['artist']; ?>">
+                                                                                    <a href="javascript:void(0)"
+                                                                                        class="noodata-play">
+                                                                                        <span
+                                                                                            class="current-active-play">
+                                                                                            <i class="fa fa-play"></i>
+                                                                                        </span>
+
+                                                                                        <small class="track-title">
+                                                                                            <?php echo $track['title']; ?></small>
+                                                                                    </a>
+                                                                                    <span class="album-meta">
+
+                                                                                        <?php if ($track['downloadable'] == "true"):
+    ?>
+                                                                                        <a href="<?php echo $track['location']; ?>"
+                                                                                            target="_blank" download>
+                                                                                            <i
+                                                                                                class="fas fa-download"></i>
+                                                                                        </a>
+                                                                                        <?php
+else:
+?>
+                                                                                        <a href="<?php echo $track['location']; ?>"
+                                                                                            target="_blank" download>
+
+                                                                                        </a>
+                                                                                        <?php
+endif;
+?>
+                                                                                    </span>
+                                                                                </li>
+                                                                                <?php
+endforeach;
+?>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Tracks -->
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Activity Section -->
+                                        <div class="col-md-8 col-sm-12 mt-3 activity">
+
+                                            <div class="feed">
+
+
+                                                <?php
+$segment = $this->uri->segment(2);
+foreach ($viewer_posts as $posti):
+    if ($posti['media_img'] != "") {
+        $img = $posti['media_img'];
+    } else {
+        $img = "blank_user.png";
+    }
+    ?>
+
+
+                                                <div class="social-feed-box">
+                                                    <?php $data = array('onsubmit' => "checkIfEmpty(this)");?>
+                                                    <?php echo form_open('user/members/create/' . $posti['post_id'], $data); ?>
+                                                    <input type="hidden" name="comms"
+                                                        value="<?php echo $posti['post_id']; ?>">
+                                                    <input type="hidden" name="seg" value="<?php echo $segment; ?>">
+                                                    <div class="social-avatar">
+                                                        <div class="avatar-element mr-3">
+                                                            <div class="social-img-container">
+                                                                <a href="">
+                                                                    <img alt="image" class="img-circle"
+                                                                        src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="user-comment">
+                                                            <small
+                                                                class="text-muted"><?php echo dateFormat('d/m/Y h:ia', $posti['date_created']); ?></small>
+                                                            <div class="social-body">
+                                                                <p id="p_post">
+                                                                    <?php echo $posti['entry_text']; ?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment-response" id="comment_section">
+                                                        <?php
+    foreach($post_comments as $comments):
+        if($posti['post_id'] == $comments['post_id']): 
+      if($comments['media_img'] != "")
+                 {
+                     $img = $comments['media_img'];
+                 }
+
+                 else
+                 {
+                     $img = "blank_user.png";
+                 }
+            ?>
+                                                        <div class="social-comment">
+                                                            <div class="avatar-element  mr-3">
+                                                                <div class="social-img-container mr-3">
+                                                                    <a href="">
+                                                                        <img alt="image" class="img-circle"
+                                                                            src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="comment-body">
+                                                                <div class="user-left">
+                                                                    <a
+                                                                        href="<?php echo base_url(); ?>/members/<?php echo $comments['user_id']; ?>">
+                                                                        <?php echo $comments['username']; ?>
+                                                                    </a>
+                                                                </div>
+
+                                                                <?php echo $comments['txt']; ?>
+
+                                                                <div class="user-right">
+                                                                    <small
+                                                                        class="text-muted"><?php echo dateFormat('d/m/Y h:ia', $comments['date']); ?></small>
+                                                                </div>
+
+
+                                                            </div>
+
+                                                        </div>
+                                                        <?php endif;
+    endforeach;?>
+
+                                                        <div class="social-comment">
+
+
+                                                            <div class="comment-text">
+
+                                                                <textarea onkeyup="enableDisable(this)"
+                                                                    class="form-control" placeholder="Write comment..."
+                                                                    name="txt" id="comment_textarea"></textarea>
+                                                                <div class="button-container">
+                                                                    <button onload="disableBtn()"
+                                                                        class="comment-btn mt-3" type="submit"
+                                                                        id="c_submit" disabled="disabled"
+                                                                        onclick="checkIfEmpty()">Post</button>
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <?php echo form_close(); ?>
+                                                </div>
+
+                                                <?php
+
+endforeach;
+?>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<?php
+        else:
+        ?>
+<!-- All others -->
+<title>Scrutiny | <?php echo $members['username']; ?></title>
+
+<div class="page-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="profile-wrapper">
+                    <div class="profile-title text-center">
+                        <h5>Profile Detail</h5>
+                    </div>
+                    <div class="profile-body">
+                        <div class="img-wrapper">
+                            <img alt="image" class="img-fluid"
+                                src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>">
+                        </div>
+
+                        <div class="profile-content mt-5 mb-5">
+                            <div class="profile-info">
+                                <div class="left">
+                                    <div>
+                                        <h4><strong><?php echo $members['username']; ?></strong></h4>
+                                        <p><i class="fa fa-map-marker"></i> <?php echo $members['Location']; ?>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            About
+                                        </h5>
+                                        <p>
+                                            <?php echo $members['info']; ?>
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="right">
+                                    <h5><strong><i class="fa fa-headphones mr-3"
+                                                aria-hidden="true"></i><?php echo $count_viewy_tracks; ?></strong>
+                                        Tracks
+                                    </h5>
+
+                                    <h5><strong><i class="fa fa-users mr-3"
+                                                aria-hidden="true"></i><?php echo $u_count_friends; ?></strong>
+                                        Following
+                                    </h5>
+
+                                    <h5><strong><i class="fa fa-users mr-3"
+                                                aria-hidden="true"></i><?php echo $u_count_followers; ?></strong>
+                                        Followers</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php
+                                if ($followers):
+                                ?>
+                        <div class="profile-content">
+
+                            <div class="user-button py-3">
+                                <div>
+                                    <input type="hidden" name="see" id="see" value="<?php echo $members['user_id']; ?>">
+                                    <a href="<?php echo base_url() . 'chats/' . $members['user_id']; ?>"
+                                        class="profile-mgt"><i class="fa fa-envelope"></i>
+                                        Message</a>
+                                </div>
+
+                                <div>
+                                    <?php
+echo form_open_multipart('user/members/follow');
+
+?>
+                                    <input type="hidden" name="friend_id" value="<?php echo $members['user_id']; ?>" />
+                                    <button type="submit" class="button rounded-item"><i
+                                            class="fas fa-user-friends"></i>
+                                        Follow</button>
+
+                                    <!-- <a href="#" class="profile-mgt"><i class="fas fa-user-friends"></i>
+                                                Follow</a> -->
+                                    <?php
+echo form_close();
+?>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <?php
+                                endif
+                                ?>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-8 col-sm-12">
+                <div class="activity-wrapper">
+                    <div class="activity-title">
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <div class="panel-options">
+                                        <ul class="nav nav-tabs panel-tabs">
+                                            <li class="active mr-5"><a href="#tab-1" data-toggle="tab">Activities</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <div class="tab-content">
+                                        <div class="left-content col-md-4 col-sm-12 connections">
+                                            <div>
+                                                <div class="follow-heading">
+                                                    <h3><i class="fa fa fa-users"></i>Following</h3>
+                                                    <small><i class="fa fa-tim"></i><?php echo $u_count_friends; ?>
+                                                        following.</small>
+
+                                                </div>
+
+
+                                                <div class="follow-content">
+                                                    <?php
+foreach ($u_friends as $u_friend):
+if ($u_friend['media_img'] != "") {
+    $img = $u_friend['media_img'];
+} else {
+    $img = "blank_user.png";
+}
+?>
+                                                    <div class="feed-element mb-3 mr-3">
+                                                        <div class="follow-img-container ">
+
+                                                            <a class="aFollower"
+                                                                href="<?php echo site_url('/members/' . $u_friend['user_id']); ?>"><span
+                                                                    class="tooltiptext"><?php echo $u_friend['username']; ?></span><img
+                                                                    alt="image" class="img-circle"
+                                                                    src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>"></a>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+endforeach;
+?>
+                                                </div>
+                                                <div class="follow-heading">
+                                                    <h3><i class="fa fa fa-users"></i>Followers</h3>
+
+                                                    <small><i class="fa fa-tim"></i><?php echo $u_count_followers; ?>
+                                                        followers</small>
+                                                </div>
+
+                                                <div class="follow-content">
+                                                    <?php
+
+foreach ($u_followers as $u_follower):
+if ($u_follower['media_img'] != "") {
+    $img = $u_follower['media_img'];
+} else {
+    $img = "blank_user.png";
 }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid white;
-  width: 100%; /* Could be more or less, depending on screen size */
+?>
+                                                    <div class="feed-element mb-3 mr-3">
+
+                                                        <div class="follow-img-container ">
+                                                            <a class="aFollower"
+                                                                href="<?php echo site_url('/members/' . $u_follower['user_id']); ?>"><span
+                                                                    class="tooltiptext"><?php echo $u_follower['username']; ?></span><img
+                                                                    alt="image" class="img-circle"
+                                                                    src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>"></a>
+
+                                                        </div>
+                                                    </div>
+                                                    <?php
+endforeach;
+?>
+                                                </div>
+
+                                                <!-- Tracks -->
+                                                <div class="single-album">
+                                                    <div class="noo-main single single-noo_album">
+                                                        <div class="noo_album">
+                                                            <div class="album-intro col-xs-12">
+                                                                <div class="album-intro-wrap">
+                                                                    <div class="album-media-player">
+                                                                        <div class="single-album-playlist">
+                                                                            <ul>
+                                                                                <?php
+$i = 0;
+foreach ($viewy_track as $track):
+++$i;
+
+?>
+
+                                                                                <li id="album_<?php echo $i; ?>"
+                                                                                    data-id="album_<?php echo $i; ?>"
+                                                                                    data-artist="<a href=&quot;#&quot;><?php echo $track['artist']; ?></a>"
+                                                                                    data-file="<?php echo base_url(); ?>/public/user_tracks/<?php echo $track['location']; ?>"
+                                                                                    data-thumb="<img width=&quot;768&quot; height=&quot;1000&quot; src=&quot;<?php echo base_url(); ?>public/images/album/<?php echo $track['art']; ?>&quot; alt=&quot;rock16&quot;/>"
+                                                                                    data-name="<?php echo $track['title']; ?>"
+                                                                                    data-url="#"
+                                                                                    data-album="<?php echo $track['artist']; ?>">
+                                                                                    <a href="javascript:void(0)"
+                                                                                        class="noodata-play">
+                                                                                        <span
+                                                                                            class="current-active-play">
+                                                                                            <i class="fa fa-play"></i>
+                                                                                        </span>
+
+                                                                                        <small class="track-title">
+                                                                                            <?php echo $track['title']; ?></small>
+                                                                                    </a>
+                                                                                    <span class="album-meta">
+
+                                                                                        <?php if ($track['downloadable'] == "true"):
+?>
+                                                                                        <a href="<?php echo $track['location']; ?>"
+                                                                                            target="_blank" download>
+                                                                                            <i
+                                                                                                class="fas fa-download"></i>
+                                                                                        </a>
+                                                                                        <?php
+else:
+?>
+                                                                                        <a href="<?php echo $track['location']; ?>"
+                                                                                            target="_blank" download>
+
+                                                                                        </a>
+                                                                                        <?php
+endif;
+?>
+                                                                                    </span>
+                                                                                </li>
+                                                                                <?php
+endforeach;
+?>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Tracks -->
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Activity Section -->
+                                        <div class="col-md-8 col-sm-12 mt-3 activity">
+
+                                            <div class="feed">
+
+
+                                                <?php
+$segment = $this->uri->segment(2);
+foreach ($viewer_posts as $posti):
+if ($posti['media_img'] != "") {
+    $img = $posti['media_img'];
+} else {
+    $img = "blank_user.png";
 }
-  #text_wrapper {
-              margin: 0 auto;
-              border: 1px solid #ccc;
-              position:relative;
-              top:25em;
-              background: rgb(234, 236, 239);
-              border-radius: 2px;
-              width: 10cm !important;
-            }
-            #text {  
-              outline: none;
-              margin: 0 auto;
-              max-height:60px;
-              width:80%;
-              overflow: auto;
-              font-size: 24px;
-              background: white;
-              border-radius: 5px;
-              border:1px solid rgb(197, 200, 204);
-              position: relative;
-              margin-left: 10.5% 
-
-              -moz-outline: none;
-              -moz-margin: 0 auto;
-              -moz-max-height:60px;
-              -moz-width:80%;
-              -moz-overflow: auto;
-              -moz-font-size: 24px;
-              -moz-background: white;
-              -moz-border-radius: 5px;
-              -moz-border:1px solid rgb(197, 200, 204);
-              -moz-position: relative;
-              -moz-margin-left: 10.5%
-            }
-            #text img {
-              width: 29px;
-              position: ;
-          }
-            .emoImage {
-              width: 38px;
-              cursor: pointer;
-              padding-left:1em;
-            }
-
-            #button {
-              color: #bbb;
-              margin-left: 40px;
-              position:relative;
-              top:24em;
-            } 
-            #emojiButton{
-              
-              cursor: pointer;
-              margin-top:49px;
-              width:25px;
-              position:absolute;
-              margin-left: 73% !important;
-             
-                
-            }
-            #emojiContainer{
-                background: rgba(199, 206, 216, 0.4);
-                width: 107% !important;
-                position:absolute;
-                top:8.3em !important;
-                /*margin: 40px;*/
-                /*border-radius: 9px;*/
-                height:237px;
-                display: none;
-                border: 1px solid rgb(199, 206, 216);
-                transition: height 2s;
-                overflow: auto;
-                
-            }
-            #postModal{
-                min-height: 400px;
+?>
 
 
-            }
-            #modalId{
-                width:100%;
-            }
-            #modal-post{
-  width:100%;
-  margin:auto;
-  margin-top:10%;
-}
-#w_submit{
-  
-  background-color: rgb(234, 236, 239);
-  position: relative;
-  top:41px;
-  
-  border:none;
-  
-}
-  }
-  /*Phones*/
+                                                <div class="social-feed-box">
+                                                    <?php $data = array('onsubmit' => "checkIfEmpty(this)");?>
+                                                    <?php echo form_open('user/members/create/' . $posti['post_id'], $data); ?>
+                                                    <input type="hidden" name="comms"
+                                                        value="<?php echo $posti['post_id']; ?>">
+                                                    <input type="hidden" name="seg" value="<?php echo $segment; ?>">
+                                                    <div class="social-avatar">
+                                                        <div class="avatar-element">
+                                                            <div class="social-img-container">
+                                                                <a href="">
+                                                                    <img alt="image" class="img-circle"
+                                                                        src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="user-comment">
+                                                            <small
+                                                                class="text-muted"><?php echo dateFormat('d/m/Y h:ia', $posti['date_created']); ?></small>
+                                                            <div class="social-body">
+                                                                <p id="p_post">
+                                                                    <?php echo $posti['entry_text']; ?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment-response" id="comment_section">
+                                                        <?php
+foreach($post_comments as $comments):
+    if($posti['post_id'] == $comments['post_id']): 
+  if($comments['media_img'] != "")
+             {
+                 $img = $comments['media_img'];
+             }
 
-  /*Phones (5/SE)*/
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
+             else
+             {
+                 $img = "blank_user.png";
+             }
+ ?>
+                                                        <div class="social-comment">
+                                                            <div class="avatar-element  mr-3">
+                                                                <div class="social-img-container mr-3">
+                                                                    <a href="">
+                                                                        <img alt="image" class="img-circle"
+                                                                            src="<?php echo base_url(); ?>/public/user_img/<?php echo $img; ?>">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
 
-    .modal{
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+                                                            <div class="comment-body">
+                                                                <div class="user-left">
+                                                                    <a
+                                                                        href="<?php echo base_url(); ?>/members/<?php echo $comments['user_id']; ?>">
+                                                                        <?php echo $comments['username']; ?>
+                                                                    </a>
+                                                                </div>
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid white;
-  width: 100%; /* Could be more or less, depending on screen size */
-}
+                                                                <?php echo $comments['txt']; ?>
 
-  #text_wrapper {
-              margin: 0 auto;
-              border: 1px solid #ccc;
-              position:relative;
-              top:25em;
-              background: rgb(234, 236, 239);
-              border-radius: 2px;
-              width: 8cm;
-              left: -0.6cm;
-            }
-            #text {  
-              outline: none;
-              margin: 0 auto;
-              max-height:60px;
-              width:70%;
-              overflow: auto;
-              font-size: 24px;
-              background: white;
-              border-radius: 5px;
-              border:1px solid rgb(197, 200, 204);
-              position: relative;
-              margin-left: 10.5% 
-
-              -moz-outline: none;
-              -moz-margin: 0 auto;
-              -moz-max-height:60px;
-              -moz-width:80%;
-              -moz-overflow: auto;
-              -moz-font-size: 24px;
-              -moz-background: white;
-              -moz-border-radius: 5px;
-              -moz-border:1px solid rgb(197, 200, 204);
-              -moz-position: relative;
-              -moz-margin-left: 10.5%
-            }
-            #text img {
-              width: 29px;
-              position: ;
-          }
-            .emoImage {
-              width: 38px;
-              cursor: pointer;
-              padding-left:1em;
-            }
-
-            #button {
-              color: #bbb;
-              margin-left: 40px;
-              position:relative;
-              top:24em;
-            } 
-            #emojiButton{
-              
-              cursor: pointer;
-              margin-top:50px;
-              width:25px;
-              position:absolute;
-              margin-left: 70%;
-             
-                
-            }
-            #emojiContainer{
-                background: rgba(199, 206, 216, 0.4);
-                width: 104%;
-                position:absolute;
-                top:8.6em;
-                /*margin: 40px;*/
-                left:-7px;
-                /*border-radius: 9px;*/
-                height:237px;
-                display: none;
-                border: 1px solid rgb(199, 206, 216);
-                transition: height 2s;
-                overflow: auto;
-                
-            }
-            #postModal{
-                min-height: 400px;
+                                                                <div class="user-right">
+                                                                    <small
+                                                                        class="text-muted"><?php echo dateFormat('d/m/Y h:ia', $comments['date']); ?></small>
+                                                                </div>
 
 
-            }
-            #modalId{
-                width:100%;
-            }
-            #modal-post{
-  width:100%;
-  margin:auto;
-  margin-top:10%;
-}
-#w_submit{
-  
-  background-color: rgb(234, 236, 239);
-  position: relative;
-  top:41px;
-  
-  border:none;
-  
-}
+                                                            </div>
 
-.drak{
-    display:none;
-}
-
-#trackTitle{
-    font-size: 10px !important;
-    color:white;
-}
-.single-album-playlist{
-    width: 100% !important;
-    display:flex;
-    flex-direction:column;
-    position:relative !important;
-    right:2cm;
-    min-width:190px !important;
-}
-  }
-  /*Phones 5/SE*/
-  /*PC*/
-  @media screen 
-  and (min-device-width: 1200px) 
-  and (max-device-width: 5000px){
-
-    .modal{
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  /*padding: 20px;*/
-  /*border: 1px solid white;*/
-  width: 40%; /* Could be more or less, depending on screen size */
-}
-
-    #w_submit{
-  
-  background-color: rgb(234, 236, 239);
-  position: relative;
-  top:44px;
-  left:4%;
-  border:none;
-}
-    #modal-post{
-  width:50%;
-  margin:auto;
-  margin-top:10%;
-}
-    #text_wrapper {
-              margin: 0 auto;
-              border: 1px solid #ccc;
-              position:relative;
-              top:25em;
-              background: rgb(234, 236, 239);
-              border-radius: 2px;
-            }
-            #text {  
-              outline: none;
-              margin: 0 auto;
-              max-height:60px;
-              width:80%;
-              overflow: auto;
-              font-size: 24px;
-              background: white;
-              border-radius: 5px;
-              border:1px solid rgb(197, 200, 204);
-              position: relative;
-              margin-left: 10.5%;
-              height: 50px;
-            
-             
-            }
-            #text img {
-              width: 29px;
-              position: ;
-          }
-            .emoImage {
-              width: 38px;
-              cursor: pointer;
-              padding-left:1em;
-            }
-
-            #button {
-              color: #bbb;
-              margin-left: 40px;
-              position:relative;
-              top:24em;
-            } 
-            #emojiButton{
-              
-              cursor: pointer;
-              margin-top:49px;
-              width:25px;
-              position:absolute;
-              margin-left: 86%;
-             
-                
-            }
-            #emojiContainer{
-                background: rgba(199, 206, 216, 0.4);
-                width: 49%;
-                position:absolute;
-                top:4.9em;
-                margin: 40px;
-                left:-4.6%%;
-                border-radius: 9px;
-                height:237px;
-                display: none;
-                border: 1px solid rgb(199, 206, 216);
-                transition: height 2s;
-                
-            }
-            #postModal{
-                min-height: 400px;
-                width:110%;
-                position:relative;
-                margin-left: -0.9cm;
-
-            }
-        }
-/*PC*/
-/*Tablet*/
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-   { 
-
-  #text_wrapper {
-              margin: 0 auto;
-              border: 1px solid #ccc;
-              position:relative;
-              top:25em;
-              background: rgb(234, 236, 239);
-              border-radius: 2px;
-            }
-            #text {  
-              outline: none;
-              margin: 0 auto;
-              max-height:60px;
-              width:80%;
-              overflow: auto;
-              font-size: 24px;
-              background: white;
-              border-radius: 5px;
-              border:1px solid rgb(197, 200, 204);
-              position: relative;
-              margin-left: 10.5% 
-
-              -moz-outline: none;
-              -moz-margin: 0 auto;
-              -moz-max-height:60px;
-              -moz-width:80%;
-              -moz-overflow: auto;
-              -moz-font-size: 24px;
-              -moz-background: white;
-              -moz-border-radius: 5px;
-              -moz-border:1px solid rgb(197, 200, 204);
-              -moz-position: relative;
-              -moz-margin-left: 10.5%
-            }
-            #text img {
-              width: 29px;
-              position: ;
-          }
-            .emoImage {
-              width: 38px;
-              cursor: pointer;
-              padding-left:1em;
-            }
-
-            #button {
-              color: #bbb;
-              margin-left: 40px;
-              position:relative;
-              top:24em;
-            } 
-            #emojiButton{
-              
-              cursor: pointer;
-              margin-top:50px;
-              width:25px;
-              position:absolute;
-              margin-left: 86%;
-             
-                
-            }
-            #emojiContainer{
-                background: rgba(199, 206, 216, 0.4);
-                width: 89%;
-                position:absolute;
-                top:3.8em;
-                margin: 40px;
-                left:-20px;
-                border-radius: 9px;
-                height:237px;
-                display: none;
-                border: 1px solid rgb(199, 206, 216);
-                transition: height 2s;
-                overflow: auto;
-                
-            }
-            #postModal{
-                min-height: 400px;
+                                                        </div>
+                                                        <?php endif;
+endforeach;?>
+                                                        <?php
+    if ($session == $members['user_id']):
+    ?>
+                                                        <div class="social-comment">
 
 
-            }
-            #modalId{
-                width:100%;
-            }
-            #modal-post{
-  width:100%;
-  margin:auto;
-  margin-top:10%;
-}
-#w_submit{
-  
-  background-color: rgb(234, 236, 239);
-  position: relative;
-  top:41px;
-  
-  border:none;
-  
-}
-.single-album-playlist{
-     position:relative !important;
-    right:2cm;
-}
-  }
+                                                            <div class="comment-text">
 
-/*Tablet*/
-            
+                                                                <textarea onkeyup="enableDisable(this)"
+                                                                    class="form-control" placeholder="Write comment..."
+                                                                    name="txt" id="comment_textarea"></textarea>
+                                                                <div class="button-container">
+                                                                    <button onload="disableBtn()"
+                                                                        class="comment-btn mt-3" type="submit"
+                                                                        id="c_submit" disabled="disabled"
+                                                                        onclick="checkIfEmpty()">Post</button>
+                                                                </div>
 
-            #postHr{
-                border-top: 1px solid rgba(199,296,216,0.4);
-                position:absolute;
-                width:94%;
-                border-left:1px solid rgba(199,296,216,0.4);
-                height: 73%;
-                left:3%;
-                border-right: 1px solid rgba(199,296,216,0.4);
-            }
+                                                            </div>
 
-            .tooltiptext {
-    visibility: hidden;
-    width: 100px;
-    background-color: rgb(25, 51, 91);
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-}
 
-.aFollower:hover .tooltiptext{
-    visibility: visible;
-}
-.single-album-playlist{
-     position:relative ;
-    right:2cm;
-}
-</style>       
-<script>
-$(document).ready(function(){
-    $("#angry").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/angry.svg">');              
-    });
+                                                        </div>
+                                                        <?php
+endif
+?>
+                                                    </div>
 
-    $("#punk").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/punk.svg">');
-    });
+                                                    <?php echo form_close(); ?>
+                                                </div>
 
-    $("#arrogant").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/arrogant.svg">');
-    });
-    $("#happy").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/happy-2.svg">');
-    }); $("#confused-black").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/confused-black.svg">');
-    }); $("#confused").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/confused-1.svg">');
-    });
+                                                <?php
 
-        $("#crying").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/crying-3.svg">');
-    });
-        $("#dazed").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/dazed-2.svg">');
-    });
-    
-        $("#dead-black-woman").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/dead-woman-black.svg">');
-    });
-    $("#dead-white-woman").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/dead-5.svg">');
-    });
-    
-    $("#desperate-black").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/desperate-black.svg">');
-    });
-    $("#desperate").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/desperate.svg">');
-    });
+endforeach;
+?>
 
-    $("#dissapointment-black").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/dissapointment-black.svg">');
-    });
+                                            </div>
 
-    $("#dissapointment").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/dissapointment.svg">');
-    });
-   
-    $("#dumb").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/dumb.svg">');
-    });
-    
-    $("#evil").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/evil.svg">');
-    });
-    
-    $("#flirt-black").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/flirt-black.svg">');
-    });
-    
-    $("#gangster").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/gangster.svg">');
-    });
-    
-    $("#inlove").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/in-love-2.svg">');
-    });
-    
-    $("#kiss").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/kiss-2.svg">');
-    });
-    
-    $("#laugh").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/laughing-2.svg">');
-    });
-    
-    $("#rich").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/rich.svg">');
-    });
-    
-    $("#sad").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/sad-5.svg">');
-    });
-    $("#scared").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/scared-1.svg">');
-    });
-    $("#scared2").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/scared-2.svg">');
-    });
 
-    $("#shocked-black").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/shocked-black.svg">');
-    }); 
-    $("#shocked-white").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/shocked-1.svg">');
-    });
-    $("#sick").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/sick-2.svg">');
-    });
-    $("#rasta").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/rasta.svg">');
-    });
-    $("#tired").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/tired-1.svg">');
-    });
-    $("#tough").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/tough-1.svg">');
-    });
-    $("#wink").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/wink-1.svg">');
-    });
-    $("#yawn").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/yawning-2.svg">');
-    });
-    $("#silent").click(function() {
-        $("#text").append('<img src="<?php echo base_url();?>/public/img/svg/silent.svg">');
-    });
-    
-    $("#emojiButton").click(function(){
-        var cont = $('#emojiContainer');
-        var isVisible = cont.is(':visible');
-        if(isVisible === true){
-            $('#emojiContainer:visible').hide(500);
-        }
-        else{                       
-            $('#emojiContainer:hidden').show(500);
-        }
-                             
-    });
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-   $("#w_submit").click(function(){
-    // var datas = $("#text").text();
-    var data = {"content" : $("#text").html()}
-    if($("#text").text().trim().length == 0){
-        document.getElementById("text").style.border = "1px solid red";
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<?php
+    endif
+    ?>
+
+<script type="text/javascript">
+$("#comment_textarea").keypress(function(e) {
+    if (e.which == 13) {
+
+        $("#c_submit").click();
         return false;
     }
-    
+
+});
+
+$("#post-modal-button").click(function() {
+
+    let data = {
+        "content": $("#modal-text").val()
+    };
+    const postModalText = document.getElementById("modal-text");
+    if (postModalText.value.trim() !== "") {
+
         $.ajax({
+            type: "POST",
             url: base_url + "user/members/create_post",
-            method: "POST",
             data: data,
-            datatype: 'html',
             success: function(response) {
                 window.location.reload();
             }
         });
-    
-    });
+    } else {
+        postModalText.style.border = "1px solid red";
+        return false;
+    }
+
 });
 
 
-</script>
-
-  
-
-<br><br><br><br><br><br><br>
-
-<?php
-if($members['media_img'] != "")
-{
-    $img = $members['media_img'];
-}
-
-else
-{
-    $img = "blank_user.png";
-}
-?>
-       <?php
-        $session = $this->session->userdata('user_id');   
-        //$friends = 0;
-        
-        if($session == $members['user_id']):
-
-       ?>       <title>Scrutiny | <?php echo $members['username'];?></title>
-               <div class="wrapper wrapper-content">
-            <div class="row animated fadeInRight">
-                <div class="col-md-4">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Profile Detail</h5>
-                        </div>
-                        <div>
-                            <div class="ibox-content no-padding border-left-right" id="profile-content">
-                            
-                            
-                                <img id= "profile_image" alt="image" class="img-responsive" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>">
-
-                                <br><br><hr style="width: 87%;">
-                            <div class="ibox-content profile-content">
-                                <h4><strong><?php echo $members['username'];?></strong></h4>
-                                <p><i class="fa fa-map-marker"></i> <?php echo $members['Location'];?></p>
-                                <h5>
-                                    About me
-                                </h5>
-                                <p>
-                                    &nbsp;&nbsp;<?php echo $members['info'];?>
-                                </p>
-                                <div class="row m-t-lg">
-                                    <div class="col-md-4">
-                                       
-                                        <h5><strong><i class="fa fa-headphones" aria-hidden="true"></i><?php echo $count_tracks;?></strong> Tracks</h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        
-                                        <h5><strong><i class="fa fa-users" aria-hidden="true"></i><?php echo $count_friends;?></strong> Following</h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        
-                                        <h5><strong><i class="fa fa-users" aria-hidden="true"></i><?php echo $count_followers;?></strong> Followers</h5>
-                                    </div>
-                                </div>
-
-
-                                <div class="user-button">
-                                    <div class="row">
-                                        
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <hr style="width: 87%;">
-                            </div><br><br>
-
-                            <div class="ibox-content profile-content" id = "profile-content">
-                                
-                            <ul class ="profile_info" id="profile_info">
-                                <?php
-                                    if($members):
-                                ?>
-                            <li><a class="profile_li" href="<?php echo site_url('user/members/edit/'.$members['user_id']);?>" id=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit Information</a></li>
-                            <br>
-                            <?php
-                        endif;
-                        ?>
-                            <li><a class="profile_li" href="<?php echo base_url();?>/user/uploads/" id=""><i class="fa fa-headphones" aria-hidden="true"></i>&nbsp;Upload Music</a></li><br>
-                            <li><a class="profile_li" href="<?php echo site_url('user/chats/view_chats');?>" id=""><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Messages</a></li><br>
-                            <li><a data-toggle="modal" class="profile_li" href="" id="modal-click" ><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Write Post</a></li><br>
-                            <li><a class="profile_li" href="<?php echo site_url('user/connect/');?>" id=""><i class="fa fa-dashboard" aria-hidden="true"></i>&nbsp;Dashboard</a></li>
-                            </ul>
-                            
-                        </div>
-                            
-                    </div>
-                </div>
-                    </div>
-
-                    <div id="write-post" class="modal">
-                         <div class="modal-content">
-                          
-                <div class="col-lg-12" id="modalId">
-                    
-                <div class="ibox float-e-margins">
-                     <span class="close" style="opacity:unset; color:#f8ac59;">&times;</span>
-                    <div class="ibox-content no-padding" id="postModal">
-                        <hr id ="postHr">
-                        <!-- <?php //echo form_open('user/members/create_post'); ?> -->
-                            <div id="emojiContainer">
-        <img src="<?php echo base_url();?>/public/img/svg/afro.svg" class="emoImage">
-        <img src="<?php echo base_url();?>/public/img/svg/angry.svg" class="emoImage" id="angry">
-        <img src="<?php echo base_url();?>/public/img/svg/punk.svg" class="emoImage" id="punk">
-        <img src="<?php echo base_url();?>/public/img/svg/arrogant.svg" class="emoImage" id="arrogant">
-        <img src="<?php echo base_url();?>/public/img/svg/happy-2.svg" class="emoImage" id="happy">
-        <img src="<?php echo base_url();?>/public/img/svg/confused-1.svg" class="emoImage" id="confused">
-        <img src="<?php echo base_url();?>/public/img/svg/confused-black.svg" class="emoImage" id="confused-black">
-        <img src="<?php echo base_url();?>/public/img/svg/crying-3.svg" class="emoImage" id="crying">
-        <img src="<?php echo base_url();?>/public/img/svg/dazed-2.svg" class="emoImage" id="dazed"><br><br><br>
-        <img src="<?php echo base_url();?>/public/img/svg/dead-woman-black.svg" class="emoImage" id="dead-black-woman">
-        <img src="<?php echo base_url();?>/public/img/svg/dead-5.svg" class="emoImage" id="dead-white-woman">
-        <img src="<?php echo base_url();?>/public/img/svg/desperate-black.svg" class="emoImage" id="desperate-black">
-        <img src="<?php echo base_url();?>/public/img/svg/desperate.svg" class="emoImage" id="desperate">
-        <img src="<?php echo base_url();?>/public/img/svg/dissapointment-black.svg" class="emoImage" id="dissapointment-black">
-        <img src="<?php echo base_url();?>/public/img/svg/dissapointment.svg" class="emoImage" id="dissapointment">
-        <img src="<?php echo base_url();?>/public/img/svg/dumb.svg" class="emoImage" id="dumb">
-        <img src="<?php echo base_url();?>/public/img/svg/evil.svg" class="emoImage" id="evil">
-        <img src="<?php echo base_url();?>/public/img/svg/flirt-black.svg" class="emoImage" id="flirt-black"><br><br><br>
-        <img src="<?php echo base_url();?>/public/img/svg/flirt-1.svg" class="emoImage" id="flirt-white">
-        <img src="<?php echo base_url();?>/public/img/svg/gangster.svg" class="emoImage" id="gangster">
-        <img src="<?php echo base_url();?>/public/img/svg/in-love-2.svg" class="emoImage" id="inlove">
-        <img src="<?php echo base_url();?>/public/img/svg/kiss-2.svg" class="emoImage" id="kiss">
-        <img src="<?php echo base_url();?>/public/img/svg/laughing-2.svg" class="emoImage" id="laugh">
-        <img src="<?php echo base_url();?>/public/img/svg/rich.svg" class="emoImage" id="rich">
-        <img src="<?php echo base_url();?>/public/img/svg/sad-5.svg" class="emoImage" id="sad">
-        <img src="<?php echo base_url();?>/public/img/svg/scared-1.svg" class="emoImage" id="scared">
-        <img src="<?php echo base_url();?>/public/img/svg/scared-2.svg" class="emoImage" id="scared2"><br><br><br>
-        <img src="<?php echo base_url();?>/public/img/svg/shocked-black.svg" class="emoImage" id="shocked-black">
-        <img src="<?php echo base_url();?>/public/img/svg/shocked-1.svg" class="emoImage" id="shocked-white">
-        <img src="<?php echo base_url();?>/public/img/svg/sick-2.svg" class="emoImage" id="sick">
-        <img src="<?php echo base_url();?>/public/img/svg/rasta.svg" class="emoImage" id="rasta">
-        <img src="<?php echo base_url();?>/public/img/svg/tired-1.svg" class="emoImage" id="tired">
-        <img src="<?php echo base_url();?>/public/img/svg/tough-1.svg" class="emoImage" id="tough">
-        <img src="<?php echo base_url();?>/public/img/svg/wink-1.svg" class="emoImage" id="wink">
-        <img src="<?php echo base_url();?>/public/img/svg/yawning-2.svg" class="emoImage" id="yawn">
-        <img src="<?php echo base_url();?>/public/img/svg/silent.svg" class="emoImage" id="silent">
-    </div>
-    <div id="text_wrapper">
-
-        <button class="btn btn-primary" name="submitPost" type="submit" id="w_submit" style =""><i class="fa fa-paper-plane" aria-hidden="true" style="color:black;"></i></button>
-        <img src="<?php echo base_url();?>/public/img/svg/general.png"  id="emojiButton">
-<div id="text" contentEditable="true" hidefocus="true">
-    
-</div>
-
-</div>
-                    <!--     <?php //echo form_close();?>  -->
-                        
-                    </div>
-                </div>
-            </div>
-            </div>
-                        </div>
-
-
-                <div class="col-md-8">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                          
-                            <div class="row m-t-sm">
-                                <div class="col-lg-12">
-                                <div class="panel blank-panel">
-                                <div class="panel-heading">
-                                    <div class="panel-options">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#tab-1" data-toggle="tab">Activities</a></li>
-                                            <li class=""><a href="#tab-2" data-toggle="tab">Tracks</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="panel-body">
-
-                                <div class="tab-content">
-                                <div class="tab-pane active" id="tab-1">
-                                    <div class="feed-activity-list">
-                                        <div class="col-lg-4">
-                                <div class="ibox float-e-margins">
-                                    
-                                        <div class="ibox-content ibox-heading">
-                                            <h3><i class="fa fa fa-users"></i>Following</h3>
-                                           
-                                          <small><i class="fa fa-tim"></i><?php echo $count_friends;?> following.</small>
-                                        </div>
-                               
-                                    
-                                <div class="ibox-content ">
-                                    <div class="user-friends">
-                                    <div>
-                                        <?php
-
-                                            foreach($friends as $friend):
-                                                 if($friend['media_img'] != "")
-                                            {
-                                                $img = $friend['media_img'];
-                                            }
-
-                                            else
-                                            {
-                                                $img = "blank_user.png";
-                                            }
-                                              
-                                        ?>
-                                       
-                                            <div class="feed-element">
-                                                <a href="profile.html" class="pull-left">            
-                                                </a>
-                                                <div class="media-body ">
-                                                    
-                                                     <a class="aFollower" href="<?php echo site_url('/members/'.$friend['user_id']); ?>"><span class="tooltiptext"><?php echo $friend['username'];?></span><img alt="image" class="img-circle" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>"></a>  
-                                                        
-                                                </div>
-                                            </div>
-                                        
-                                        <?php
-                                            endforeach;
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ibox-content ibox-heading">
-                                            <h3><i class="fa fa fa-users"></i>Followers</h3>
-                                           
-                                          <small><i class="fa fa-tim"></i><?php echo $count_followers;?> followers</small>
-                                        </div>
-                               
-                                    
-                                <div class="ibox-content ">
-                                    <div class="user-friends">
-                                    <div>
-                                        <?php
-
-                                            foreach($followers as $follower):
-                                                 if($follower['media_img'] != "")
-                                            {
-                                                $img = $follower['media_img'];
-                                            }
-
-                                            else
-                                            {
-                                                $img = "blank_user.png";
-                                            }
-                                              
-                                        ?>
-                                                <div class="feed-element">
-                                                    <a href="profile.html" class="pull-left">            
-                                                    </a>
-                                                    <div class="media-body ">                                                   
-                                                        <a class="aFollower" href="<?php echo site_url('/members/'.$follower['user_id']); ?>"><span class="tooltiptext"><?php echo $follower['username'];?></span><img alt="image" class="img-circle" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>"></a>  
-
-                                                    </div>
-                                                </div>
-                                        <?php
-                                            endforeach;
-                                        ?>
-                                        </div>
-                                    </div>
-                                </div>                       
-                                    </div>
-                                </div>
-                            </div>
-                                    
-                              <div class="col-lg-5" id ="post_box" style="height: 600px !important; overflow: auto;">
-                                <?php
-                                $segment = $this->uri->segment(2);
-                                    foreach($posts as $post):
-                                        if($post['media_img'] != "")
-                                        {
-                                            $img = $post['media_img'];
-                                        }
-                                        else
-                                        {
-                                            $img = "blank_user.png";
-                                        }
-                                ?>
-                         
-
-                    <div class="social-feed-box">
-                        <?php $data = array('onsubmit' => "checkIfEmpty(this)"); ?>
-                        <?php echo form_open('user/members/create/'.$post['post_id'], $data); ?>
-                            <input type="hidden" name="comms" value = "<?php echo $post['post_id'];?>">
-                            <input type="hidden" name="seg" value = "<?php echo $segment;?>">
-                        <div class="pull-right social-action dropdown">
-                            
-                        </div>
-                        <div class="social-avatar">
-                            <a href="" class="pull-left">
-                                <img alt="image" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>">
-                                
-                            </a>
-                            <div class="media-body">
-                                <a href="#">
-                                    <?php 
-                                    //$date_post = implode($post['date_created']);
-                                    ?>
-                                </a>
-                                <small class="text-muted"><?php echo dateFormat('d/m/Y h:ia',$post['date_created']);?></small>
-                            </div>
-                        </div>
-                       
-                        <div class="social-body" style="text-indent: 12% !important;">
-                            <p id="p_post" >
-                               <?php echo $post['entry_text'];?>
-                            </p>
-
-                            
-                        </div>
-                        <div class="social-footer" id="comment_section" >
-                              <?php
-                              
-                               foreach($post_comments as $comments):
-                                   if($post['post_id'] == $comments['post_id']): 
-                                 if($comments['media_img'] != "")
-                                            {
-                                                $img = $comments['media_img'];
-                                            }
-
-                                            else
-                                            {
-                                                $img = "blank_user.png";
-                                            }
-                                ?>
-                            <div class="social-comment">
-                                <a href="" class="pull-left">
-                                     <img alt="image" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>">
-                                </a>
-                              
-                                <div class="media-body">
-                                    <a href="<?php echo base_url();?>/members/<?php echo $comments['user_id'];?>">
-                                        <?php echo $comments['username'];?>
-                                    </a>
-                                   <?php echo $comments['txt'];?>
-                                    <br/>
-                                    
-                                    <small class="text-muted"><?php echo dateFormat('d/m/Y h:ia',$comments['date']);?></small>
-                                </div>
-                               
-                            </div>
-                                <?php endif; endforeach; ?>
-                            <div class="social-comment">
-                                
-                                
-                                <div class="media-body">
-
-                                    <textarea class="form-control" placeholder="Write comment..." name="txt" id="comment_textarea"></textarea>
-                                    <button class="btn btn-primary" type="submit" id="c_submit" style ="background-color: #f9f9f9; border:none;" onclick="checkIfEmpty()"><i class="fa fa-paper-plane" aria-hidden="true" style="color:black;"></i></button>
-                                </div>
-                               
-                            
-
-                            </div>
-
-                        </div>
-
-                      <?php echo form_close();?> 
-                     </div>
-
-                     <?php
-                                
-                     endforeach;
-                    ?>
-                                     
-    </div>  </div>
-                              
-    <div class="tab-pane" id="tab-2">
-         <div class="ibox-content">
-           <div class="container-wrap single-album">
-                <div class="main-content container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="noo-main single single-noo_album">
-                                <div class="noo_album">
-                                    
-                                    <div class="row">
-                                        <div class="album-intro col-xs-12">
-                                            <div class="album-intro-wrap">
-                                                
-                                                
-                                                <div class="album-media-player">
-                                                  
-                                                    <div class="single-album-playlist">
-                                                        <ul>
-                                                                            <?php 
-                                                                            $i = 0;
-                                                           foreach($tracks as $track):  
-                                                                ++$i;
-
-                                                             
-                                                             ?>
-
-                                                            <li id="album_<?php echo $i;?>" data-id="album_<?php echo $i;?>" data-artist="<a href=&quot;#&quot;><?php echo $track['artist']; ?></a>" data-file="<?php echo base_url();?>/public/user_tracks/<?php echo $track['location'];?>" data-thumb="<img width=&quot;768&quot; height=&quot;1000&quot; src=&quot;<?php echo base_url(); ?>public/images/album/<?php echo $track['art']; ?>&quot; alt=&quot;rock16&quot;/>" data-name="<?php echo $track['title']; ?>" data-url="#" data-album="<?php echo $track['artist']; ?>">
-                                                                <a href="javascript:void(0)" class="noodata-play">
-                                                                    <span class="number"><?php echo $i;?>.</span>
-                                                                    <span class="current-active-play">
-                                                                        <i class="fa fa-play"></i>
-                                                                    </span>
-                                                                    
-                                                                    <small id="trackTitle"> - <?php echo $track['title']; ?></small>
-                                                                </a>
-                                                                <span class="album-meta">
-                                                                    <a href="#" target="_blank">
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/apple.png" alt="">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/apple-light.png" alt="">
-                                                                    </a>
-                                                                    <?php if($track['downloadable'] == "true"):
-                                                                        ?>
-                                                                    <a href="<?php echo $track['location']; ?>" target="_blank" download>
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/download.png" alt="" download>
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/download-light.png" alt="">
-                                                                    </a>
-                                                                    <?php else:
-                                                                        ?>
-                                                                        <a href="<?php echo $track['location']; ?>" target="_blank" download>
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/download.png" alt="" style="display:none;">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/download-light.png" alt="" style="display:none;">
-                                                                    </a>
-                                                                <?php endif;
-                                                                ?>
-                                                                    <a href="#" target="_blank">
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/soundcloud.png" alt="">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/soundcloud-light.png" alt="">
-                                                                    </a>
-                                                                </span>
-                                                            </li>
-                                                            <?php
-                                                        endforeach;
-                                                        ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>                                                                                                              
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                        </div>
-                                    
-
-                                </div>
-                                </div>
-
-                                </div>
-
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-
-                           
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <?php
-        
-       elseif ($isfriend):
-
-            ?>
-            <title>Scrutiny | <?php echo $members['username'];?></title>
-            <div class="wrapper wrapper-content">
-            <div class="row animated fadeInRight">
-                <div class="col-md-4">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Profile Detail</h5>
-                        </div>
-                        <div>
-                            <div class="ibox-content no-padding border-left-right" id="profile-content">
-                            
-                            
-                                <img id= "profile_image" alt="image" class="img-responsive" src="<?php echo base_url();?>/public/user_img/<?php echo $img?>">
-                                    <br><br><hr style="width: 87%;">
-                            <div class="ibox-content profile-content">
-                                <h4><strong><?php echo $members['username'];?></strong></h4>
-                                <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
-                                <h5>
-                                    About me
-                                </h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat.
-                                </p>
-                                <div class="row m-t-lg">
-                                    <div class="col-md-4">
-                                        
-                                        <h5><strong>1</strong> Posts</h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        
-                                        <h5><strong>28</strong> Following</h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        
-                                        <h5><strong>240</strong> Followers</h5>
-                                    </div>
-                                </div>
-                                <div class="user-button">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type = "hidden" name = "see" id= "see" value="<?php echo $members['user_id'];?>">
-                                            <a href="<?php echo base_url().'chats/'.$members['user_id']; ?>" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send Message</a>
-                                           
-                                        </div>
-                                        <?php
-                                        echo form_open_multipart('user/members/unfollow');
-
-                                        
-                                        ?>
-                                        <div class="col-md-6">
-                                            <input type="hidden" name="friend_id" value="<?php echo $members['user_id']; ?>"/>
-                                            <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fa fa-chain-broken"></i> Unlink</button>
-                                        </div>
-                                        <?php
-                                            echo form_close();
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr style="width: 87%;">
-                        </div>
-                    </div>
-                </div>
-                    </div>
-                <div class="col-md-8">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <div class="row m-t-sm">
-                                <div class="col-lg-12">
-                                <div class="panel blank-panel">
-                                <div class="panel-heading">
-                                    <div class="panel-options">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#tab-1" data-toggle="tab">Activities</a></li>
-                                            <li class=""><a href="#tab-2" data-toggle="tab">Tracks</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="panel-body">
-
-
-
-                                <div class="tab-content">
-                                <div class="tab-pane active" id="tab-1">
-                                    <div class="feed-activity-list">
-                                        <div class="col-lg-4">
-                                <div class="ibox float-e-margins">
-                                    
-                                        <div class="ibox-content ibox-heading">
-                                            <h3><i class="fa fa fa-users"></i>Following</h3>
-                                           
-                                          <small><i class="fa fa-tim"></i><?php echo $u_count_friends;?> following.</small>
-                                        </div>
-                               
-                                    
-                                <div class="ibox-content ">
-                                    <div class="user-friends">
-                                    <div>
-                                        <?php
-
-                                            foreach($u_friends as $u_friend):
-                                                 if($u_friend['media_img'] != "")
-                                            {
-                                                $img = $u_friend['media_img'];
-                                            }
-
-                                            else
-                                            {
-                                                $img = "blank_user.png";
-                                            }
-                                              
-                                        ?>
-                                       
-                                            <div class="feed-element">
-                                                <a href="profile.html" class="pull-left">            
-                                                </a>
-                                                <div class="media-body ">
-                                                    
-                                                     <a href="<?php echo site_url('/members/'.$u_friend['user_id']); ?>"><span class="tooltiptext"><?php echo $u_friend['username'];?></span><img alt="image" class="img-circle" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>"></a>      
-                                                </div>
-                                            </div>
-                                        
-                                        <?php
-                                            endforeach;
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ibox-content ibox-heading">
-                                            <h3><i class="fa fa fa-users"></i>Followers</h3>
-                                           
-                                          <small><i class="fa fa-tim"></i><?php echo $u_count_followers;?> followers</small>
-                                        </div>
-                               
-                                    
-                                <div class="ibox-content ">
-                                    <div class="user-friends">
-                                    <div>
-                                        <?php
-
-                                            foreach($u_followers as $u_follower):
-                                                 if($u_follower['media_img'] != "")
-                                            {
-                                                $img = $u_follower['media_img'];
-                                            }
-
-                                            else
-                                            {
-                                                $img = "blank_user.png";
-                                            }
-                                              
-                                        ?>
-                                       
-                                            <div class="feed-element">
-                                                <a href="profile.html" class="pull-left">            
-                                                </a>
-                                                <div class="media-body ">
-                                                    
-                                                     <a href="<?php echo site_url('/members/'.$u_follower['user_id']); ?>"><span class="tooltiptext"><?php echo $u_follower['username'];?></span><img alt="image" class="img-circle" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>"></a>      
-                                                </div>
-                                            </div>
-                                        
-                                        <?php
-                                            endforeach;
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div></div></div>
-                                  <div class="col-lg-5" id ="post_box" style="height: 600px !important; overflow: auto;">
-                                    <?php
-                                    $segment = $this->uri->segment(2);
-                                    foreach($viewer_posts as $posti):
-                                        if($posti['media_img'] != "")
-                                        {
-                                            $img = $posti['media_img'];
-                                        }
-                                        else
-                                        {
-                                            $img = "blank_user.png";
-                                        }
-                                        
-                                ?>
-                         
-
-                    <div class="social-feed-box">
-                        <?php echo form_open('user/members/create/'.$posti['post_id']); ?>
-                         <input type="hidden" name="comms" value = "<?php echo $posti['post_id'];?>">
-                         <input type="hidden" name="seg" value = "<?php echo $segment;?>">
-                        <div class="pull-right social-action dropdown">
-                            
-                        </div>
-                        <div class="social-avatar">
-                            <a href="" class="pull-left">
-                                <img alt="image" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>">
-                                
-                            </a>
-                            <div class="media-body">
-                                <a href="#">
-                                    <?php 
-                                    //$date_post = implode($post['date_created']);
-                                    ?>
-                                </a>
-                                <small class="text-muted"><?php echo dateFormat('d/m/Y h:ia',$posti['date_created']);?></small>
-                            </div>
-                        </div>
-                       
-                        <div class="social-body" id="social-body" style="text-indent: 12% !important;">
-                            <p id="p_post" >
-                               <?php echo $posti['entry_text'];?>
-                            </p>
-
-                            
-                        </div>
-                        <div class="social-footer" id="comment_section" >
-                              <?php
-                              
-                               foreach($post_comments as $comments):
-                                   if($posti['post_id'] == $comments['post_id']): 
-                                 if($comments['media_img'] != "")
-                                            {
-                                                $img = $comments['media_img'];
-                                            }
-
-                                            else
-                                            {
-                                                $img = "blank_user.png";
-                                            }
-                                ?>
-                            <div class="social-comment">
-                                <a href="" class="pull-left">
-                                     <img alt="image" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>">
-                                </a>
-                              
-                                <div class="media-body">
-                                    <a href="<?php echo base_url();?>/members/<?php echo $comments['user_id'];?>">
-                                        <?php echo $comments['username'];?>
-                                    </a>
-                                   <?php echo $comments['txt'];?>
-                                    <br/>
-                                    
-                                    <small class="text-muted">12.06.2014</small>
-                                </div>
-                               
-                            </div>
-                                <?php endif; endforeach; ?>
-                            <div class="social-comment" onload="checkIfLoggedIn()">
-                                
-                                <div class="media-body">
-
-                                    <textarea class="form-control" placeholder="Write comment..." name="txt" id="comment_textarea"></textarea>
-                                   <button class="btn btn-primary" type="submit" id="c_submit" style ="background-color: #f9f9f9; border:none;"><i class="fa fa-paper-plane" aria-hidden="true" style="color:black;"></i></button>
-                                </div>
-                            </div>
-
-                        </div>
-                        <?php echo form_close();?>
-                        </div>
-                      
-                     
-
-                     <?php
-                                
-                     endforeach;
-                    ?></div></div>
-                                     
-                                <div class="tab-pane" id="tab-2">
-                                             <div class="ibox-content">
-
-                           <div class="container-wrap single-album">
-                <div class="main-content container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="noo-main single single-noo_album">
-                                <div class="noo_album">
-                                    
-                                    <div class="row">
-                                        <div class="album-intro col-xs-12">
-                                            <div class="album-intro-wrap">
-                                                
-                                                
-                                                <div class="album-media-player">
-                                                  
-                                                    <div class="single-album-playlist">
-                                                        <ul>
-                                                                            <?php 
-                                                                            $i = 0;
-                                                           foreach($viewy_track as $track):  
-                                                                ++$i;
-
-                                                             
-                                                             ?>
-
-                                                            <li id="album_<?php echo $i;?>" data-id="album_<?php echo $i;?>" data-artist="<a href=&quot;#&quot;><?php echo $track['artist']; ?></a>" data-file="<?php echo base_url();?>/public/user_tracks/<?php echo $track['location'];?>" data-thumb="<img width=&quot;768&quot; height=&quot;1000&quot; src=&quot;<?php echo base_url(); ?>public/images/album/<?php echo $track['art']; ?>&quot; alt=&quot;rock16&quot;/>" data-name="<?php echo $track['title']; ?>" data-url="#" data-album="<?php echo $track['artist']; ?>">
-                                                                <a href="javascript:void(0)" class="noodata-play">
-                                                                    <span class="number"><?php echo $i;?>.</span>
-                                                                    <span class="current-active-play">
-                                                                        <i class="fa fa-play"></i>
-                                                                    </span>
-                                                                    
-                                                                    <small id="trackTitle"> - <?php echo $track['title']; ?></small>
-                                                                </a>
-                                                                <span class="album-meta">
-                                                                    <a href="#" target="_blank">
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/apple.png" alt="">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/apple-light.png" alt="">
-                                                                    </a>
-
-                                                                     <?php if($track['downloadable'] == "true"):
-                                                                        ?>
-                                                                    <a href="<?php echo $track['location']; ?>" target="_blank" download>
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/download.png" alt="" download>
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/download-light.png" alt="">
-                                                                    </a>
-                                                                    <?php else:
-                                                                        ?>
-                                                                        <a href="<?php echo $track['location']; ?>" target="_blank" download>
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/download.png" alt="" style="display:none;">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/download-light.png" alt="" style="display:none;">
-                                                                    </a>
-                                                                <?php endif;
-                                                                ?>
-                                                                    <a href="<?php echo $track['location']; ?>" target="_blank" download>
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/soundcloud.png" alt="">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/soundcloud-light.png" alt="">
-                                                                    </a>
-                                                                </span>
-                                                            </li>
-                                                            <?php
-                                                        endforeach;
-                                                        ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>                                                                                                              
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                        </div>
-                                    
-
-                                </div>
-                                </div>
-
-                                </div>
-
-                                </div>
-                                </div>
-                            </div>
-                        <div class="ibox-content">
-
-                           
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div></div>
-
-       
-
-        
-        <?php
-        else:
-
-            ?>
-            <title>Scrutiny | <?php echo $members['username'];?></title>
-   <div class="wrapper wrapper-content">
-
-            <div class="row animated fadeInRight">
-                <div class="col-md-4">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Profile Detail</h5>
-                        </div>
-                        <div>
-                            <div class="ibox-content no-padding border-left-right" id="profile-content">
-                            
-                            
-                                <img id= "profile_image" alt="image" class="img-responsive" src="<?php echo base_url();?>/public/user_img/<?php echo $img?>">
-                                    <br><br><hr style="width: 87%;">
-                            <div class="ibox-content profile-content">
-                                <h4><strong><?php echo $members['username'];?></strong></h4>
-                             <p><i class="fa fa-map-marker"></i> <?php echo $members['Location'];?></p>
-                                <h5>
-                                    About <?php echo $members['username'];?>
-                                </h5>
-                                <p>
-                                    &nbsp;&nbsp;<?php echo $members['info'];?>
-                                </p>
-                                <div class="row m-t-lg">
-                                 <div class="col-md-4">
-                                       
-                                        <h5><i class="fa fa-headphones" aria-hidden="true"></i><strong><?php echo $count_viewy_tracks;?></strong> Tracks</h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        
-                                        <h5><strong><i class="fa fa-users" aria-hidden="true"></i><?php echo $u_count_friends;?></strong> Following</h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        
-                                        <h5><strong><i class="fa fa-users" aria-hidden="true"></i><?php echo $u_count_followers;?></strong> Followers</h5>
-                                    </div>
-                                </div>
-                                <div class="user-button">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type = "hidden" name = "see" id= "see" value="<?php echo $members['user_id'];?>">
-                                            <a href="<?php echo base_url() . 'chats/'.$members['user_id']; ?>" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send Message</a>
-                                        </div>
-
-                                        <?php
-                                        echo form_open_multipart('user/members/follow');
-
-                                        
-                                        ?>
-                                        <div class="col-md-6">
-                                        <input type="hidden" name="friend_id" value="<?php echo $members['user_id']; ?>"/>
-                                            <button type="submit" name="submit" id="submit" class="btn btn-primary btn-sm btn-block"><i class="fa fa-link"></i> Link</button>
-                                        </div>
-                                        <?php
-                                            echo form_close();
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr style="width: 87%;">
-                        </div>
-                    </div>
-                </div>
-                    </div>
-                <div class="col-md-8">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <div class="row m-t-sm">
-                                <div class="col-lg-12">
-                                <div class="panel blank-panel">
-                                <div class="panel-heading">
-                                    <div class="panel-options">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#tab-1" data-toggle="tab">Activities</a></li>
-                                            <li class=""><a href="#tab-2" data-toggle="tab">Tracks</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="panel-body">
-
-
-
-                                <div class="tab-content">
-                                <div class="tab-pane active" id="tab-1">
-                                    <div class="feed-activity-list">
-                                        <div class="col-lg-4">
-                                <div class="ibox float-e-margins">
-                                    
-                                        <div class="ibox-content ibox-heading">
-                                            <h3><i class="fa fa fa-users"></i>Following</h3>
-                                           
-                                          <small><i class="fa fa-tim"></i><?php echo $u_count_friends;?> following.</small>
-                                        </div>
-                               
-                                    
-                                <div class="ibox-content ">
-                                    <div class="user-friends">
-                                    <div>
-                                        <?php
-
-                                            foreach($u_friends as $u_friend):
-                                                 if($u_friend['media_img'] != "")
-                                            {
-                                                $img = $u_friend['media_img'];
-                                            }
-
-                                            else
-                                            {
-                                                $img = "blank_user.png";
-                                            }
-                                              
-                                        ?>
-                                       
-                                            <div class="feed-element">
-                                                <a href="profile.html" class="pull-left">            
-                                                </a>
-                                                <div class="media-body ">
-                                                    
-                                                     <a href="<?php echo site_url('/members/'.$u_friend['user_id']); ?>"><span class="tooltiptext"><?php echo $u_friend['username'];?></span><img alt="image" class="img-circle" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>"></a>      
-                                                </div>
-                                            </div>
-                                        
-                                        <?php
-                                            endforeach;
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ibox-content ibox-heading">
-                                            <h3><i class="fa fa fa-users"></i>Followers</h3>
-                                           
-                                          <small><i class="fa fa-tim"></i><?php echo $u_count_followers;?> followers</small>
-                                        </div>
-                               
-                                    
-                                <div class="ibox-content ">
-                                    <div class="user-friends">
-                                    <div>
-                                        <?php
-
-                                            foreach($u_followers as $u_follower):
-                                                 if($u_follower['media_img'] != "")
-                                            {
-                                                $img = $u_follower['media_img'];
-                                            }
-
-                                            else
-                                            {
-                                                $img = "blank_user.png";
-                                            }
-                                              
-                                        ?>
-                                       
-                                            <div class="feed-element">
-                                                <a href="profile.html" class="pull-left">            
-                                                </a>
-                                                <div class="media-body ">
-                                                    
-                                                     <a href="<?php echo site_url('/members/'.$u_friend['user_id']); ?>"><span class="tooltiptext"><?php echo $u_follower['username'];?></span><img alt="image" class="img-circle" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>"></a>      
-                                                </div>
-                                            </div>
-                                        
-                                        <?php
-                                            endforeach;
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div></div></div>
-                                  <div class="col-lg-5" id ="post_box" style="height: 600px !important; overflow: auto;">
-                                    <?php
-                                    $segment = $this->uri->segment(2);
-                                    foreach($viewer_posts as $posti):
-                                        if($posti['media_img'] != "")
-                                        {
-                                            $img = $posti['media_img'];
-                                        }
-                                        else
-                                        {
-                                            $img = "blank_user.png";
-                                        }
-                                        
-                                ?>
-                         
-
-                    <div class="social-feed-box">
-                        <?php echo form_open('user/members/create/'.$posti['post_id']); ?>
-                         <input type="hidden" name="comms" value = "<?php echo $posti['post_id'];?>">
-                         <input type="hidden" name="seg" value = "<?php echo $segment;?>">
-                        <div class="pull-right social-action dropdown">
-                            
-                        </div>
-                        <div class="social-avatar">
-                            <a href="" class="pull-left">
-                                <img alt="image" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>">
-                                
-                            </a>
-                            <div class="media-body">
-                                <a href="#">
-                                    <?php 
-                                    //$date_post = implode($post['date_created']);
-                                    ?>
-                                </a>
-                                <small class="text-muted"><?php echo dateFormat('d/m/Y h:ia',$posti['date_created']);?></small>
-                            </div>
-                        </div>
-                       
-                        <div class="social-body" style="text-indent: 12% !important;">
-                            <p id="p_post" >
-                               <?php echo $posti['entry_text'];?>
-                            </p>
-                            <?php if($this->session->userdata('user_id')):?>
-                            
-                            <?php
-                                    else:
-                                ?>
-                                 <div class="btn-group">
-
-                                   
-                                </div>
-                            <?php endif;?>
-                        </div>
-                        <div class="social-footer" id="comment_section" >
-                              <?php
-                              
-                               foreach($post_comments as $comments):
-                                   if($posti['post_id'] == $comments['post_id']): 
-                                 if($comments['media_img'] != "")
-                                            {
-                                                $img = $comments['media_img'];
-                                            }
-
-                                            else
-                                            {
-                                                $img = "blank_user.png";
-                                            }
-                                ?>
-                            <div class="social-comment">
-                                <a href="" class="pull-left">
-                                     <img alt="image" src="<?php echo base_url();?>/public/user_img/<?php echo $img;?>">
-                                </a>
-                              
-                                <div class="media-body">
-                                    <a href="<?php echo base_url();?>/members/<?php echo $comments['user_id'];?>">
-                                        <?php echo $comments['username'];?>
-                                    </a>
-                                   <?php echo $comments['txt'];?>
-                                    <br/>
-                                    
-                                    <small class="text-muted">12.06.2014</small>
-                                </div>
-                               
-                            </div>
-                                <?php endif; endforeach; ?>
-                            <div class="social-comment">
-                                
-                                <?php if($this->session->userdata('user_id')):?>
-                                
-                                <div class="media-body">
-
-                                    <textarea class="form-control" placeholder="Write comment..." name="txt" id="comment_textarea"></textarea>
-                                    <button class="btn btn-primary" type="submit" id="c_submit" style ="background-color: #f9f9f9; border:none;" onclick="checkIfEmpty()"><i class="fa fa-paper-plane" aria-hidden="true" style="color:black;"></i></button>
-                                </div>
-                                <?php
-                                    else:
-                                ?>
-                                 <div class="media-body">
-
-                                   
-                                </div>
-                            <?php endif;?>
-                            </div>
-
-                        </div>
-                        <?php echo form_close();?>
-                        </div>
-                      
-                     
-
-                     <?php
-                                
-                     endforeach;
-                    ?></div></div>
-                                     
-                                <div class="tab-pane" id="tab-2">
-                                             <div class="ibox-content">
-
-                           <div class="container-wrap single-album">
-                <div class="main-content container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="noo-main single single-noo_album">
-                                <div class="noo_album">
-                                    
-                                    <div class="row">
-                                        <div class="album-intro col-xs-12">
-                                            <div class="album-intro-wrap">
-                                                
-                                                
-                                                <div class="album-media-player">
-                                                  
-                                                    <div class="single-album-playlist">
-                                                        <ul>
-                                                                            <?php 
-                                                                            $i = 0;
-                                                           foreach($viewy_track as $track):  
-                                                                ++$i;
-
-                                                             
-                                                             ?>
-
-                                                            <li id="album_<?php echo $i;?>" data-id="album_<?php echo $i;?>" data-artist="<a href=&quot;#&quot;><?php echo $track['artist']; ?></a>" data-file="<?php echo base_url();?>/public/user_tracks/<?php echo $track['location'];?>" data-thumb="<img width=&quot;768&quot; height=&quot;1000&quot; src=&quot;<?php echo base_url(); ?>public/images/album/<?php echo $track['art']; ?>&quot; alt=&quot;rock16&quot;/>" data-name="<?php echo $track['title']; ?>" data-url="#" data-album="<?php echo $track['artist']; ?>">
-                                                                <a href="javascript:void(0)" class="noodata-play">
-                                                                    <span class="number"><?php echo $i;?>.</span>
-                                                                    <span class="current-active-play">
-                                                                        <i class="fa fa-play"></i>
-                                                                    </span>
-                                                                    
-                                                                    <small id="trackTitle"> - <?php echo $track['title']; ?></small>
-                                                                </a>
-                                                                <span class="album-meta">
-                                                                    <a href="#" target="_blank">
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/apple.png" alt="">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/apple-light.png" alt="">
-                                                                    </a>
-                                                                    
-                                                                     <?php if($track['downloadable'] == "true"):
-                                                                        ?>
-                                                                    <a href="<?php echo $track['location']; ?>" target="_blank" download>
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/download.png" alt="" download>
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/download-light.png" alt="">
-                                                                    </a>
-                                                                    <?php else:
-                                                                        ?>
-                                                                        <a href="<?php echo $track['location']; ?>" target="_blank" download>
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/download.png" alt="" style="display: none;">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/download-light.png" alt="" style="display:none;">
-                                                                    </a>
-                                                                <?php endif;
-                                                                ?>
-                                                                    <a href="#" target="_blank">
-                                                                        <img class="drak" src="<?php echo base_url(); ?>public/images/media-player/soundcloud.png" alt="">
-                                                                        <img class="light" src="<?php echo base_url(); ?>public/images/media-player/soundcloud-light.png" alt="">
-                                                                    </a>
-                                                                </span>
-                                                            </li>
-                                                            <?php
-                                                        endforeach;
-                                                        ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>                                                                                                              
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                        </div>
-                                    
-
-                                </div>
-                                </div>
-
-                                </div>
-
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-
-                           
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        
-        <?php
-        endif;
-       
-        ?>
-<script type="text/javascript">
-    $("#comment_textarea").keypress(function(e){
-    if(e.which == 13){
-
-      $("#c_submit").click();
-      return false;
+const commentBtn = document.querySelectorAll('.comment-btn');
+let btnArr = Array.from(commentBtn);
+
+
+function enableDisable(comment) {
+    //Reference the Button.
+
+    //Verify the TextBox value.
+    if (comment.value.trim() !== "") {
+        btnArr.forEach((btn) => {
+            btn.disabled = false;
+        });
+    } else {
+        btnArr.forEach((btn) => {
+            btn.disabled = true;
+        });
     }
-
-  });
-
- var btn1 = document.getElementById("modal-click");
- btn1.onclick = function(){
- var modal = document.getElementById('write-post');
- var span = document.getElementsByClassName("close")[0];
- modal.style.display = "block";
- span.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  document.onkeydown = function(evt) {
-      evt = evt || window.event;
-      var isEscape = false;
-      if ("key" in evt) {
-          isEscape = (evt.key == "Escape" || evt.key == "Esc");
-      }   
-      else {
-          isEscape = (evt.keyCode == 27);
-      }
-      if (isEscape) {
-          modal.style.display = "none"; 
-      }
-  };
-}   
+};
 </script>
-
-    

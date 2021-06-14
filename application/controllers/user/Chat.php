@@ -28,7 +28,7 @@ class Chat extends CI_Controller
 		$this->session->set_userdata('last_chat_message_id_' . $data['chat_id'], 0);
 		$this->load->view('user/templates/header_view_subpage', $data);
 		$this->load->view('user/chat_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 
 	}
 

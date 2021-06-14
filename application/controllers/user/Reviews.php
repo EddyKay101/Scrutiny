@@ -32,7 +32,7 @@ class Reviews extends CI_Controller
 		$this->load->view('user/templates/header_view_subpage', $data);
 		$this->load->view('user/music_view', $data);
 		$this->load->view('user/mp3_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 	}
 
 	public function m_test(){
@@ -47,7 +47,7 @@ class Reviews extends CI_Controller
 		$data['chat_count'] = $this->Chats_model->get_chat_message_count($user_id);
 		$data['subtitle'] = 'Music Entries';
 		$this->load->view('user/music_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 	}
 
 	public function view($entry_id = NULL){
@@ -72,7 +72,7 @@ class Reviews extends CI_Controller
 			
 		$this->load->view('user/templates/header_view_subpage', $data);
 		$this->load->view('user/music_entry_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 			
 		}
 
@@ -96,5 +96,3 @@ class Reviews extends CI_Controller
 		}
 
 }
-?>
-

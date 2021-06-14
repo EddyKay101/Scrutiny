@@ -35,7 +35,7 @@ class Videos extends CI_Controller
 		
 		$this->load->view('user/video_view', $data);
 	   $this->load->view('user/mp3_view');
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 	}
 
 	public function v_test(){
@@ -51,7 +51,7 @@ class Videos extends CI_Controller
 		$data['title'] = 'Videos';
 		$data['subtitle'] = 'Video Entries';
 		$this->load->view('user/video_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 	}
 
 
@@ -75,7 +75,7 @@ class Videos extends CI_Controller
 			
 		$this->load->view('user/templates/header_view_subpage',$data);
 		$this->load->view('user/video_entry_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 			
 		}
 }

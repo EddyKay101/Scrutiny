@@ -39,7 +39,7 @@ public function index($user_id = null)
                 $this->load->view('user/templates/header_view_subpage', $data);
                 $this->load->view('user/user_upload_view', $data);
                 
-                $this->load->view('user/templates/footer_view_subpage');
+                $this->load->view('user/templates/footer_view');
                 
         }
         
@@ -127,7 +127,7 @@ public function index($user_id = null)
            
  
         
-        $this->load->view('user/templates/footer_view_subpage', $data);
+        $this->load->view('user/templates/footer_view', $data);
        
       //  redirect('user/uploads/');
     }

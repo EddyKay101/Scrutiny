@@ -31,7 +31,7 @@ class Artists extends CI_Controller
 		$data['subtitle'] = 'Artist Entries';
 		$this->load->view('user/artist_view', $data);
 	   $this->load->view('user/mp3_view');
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 	}
 
 	public function a_test(){
@@ -47,7 +47,7 @@ class Artists extends CI_Controller
 		$data['title'] = 'Artists';
 		$data['subtitle'] = 'Artist Entries';
 		$this->load->view('user/artist_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 	}
 
 
@@ -70,9 +70,8 @@ class Artists extends CI_Controller
 			
 		$this->load->view('user/templates/header_view_subpage',$data);
 		$this->load->view('user/artist_entry_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 			
 		}
 }
 ?>
-

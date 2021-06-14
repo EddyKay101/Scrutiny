@@ -36,11 +36,11 @@ class MP3 extends CI_Controller
 		$this->load->view('user/upload_view', $data);
 		//$this->load->view('user/templates/footer_view');
 		}
-		public function ajax_get_count(){
+	// 	public function ajax_get_count(){
 			
-		echo $this->_count();
+	// 	echo $this->_count();
 
-	}
+	// }
 
 		
 		

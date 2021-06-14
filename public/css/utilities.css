@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    overscroll-behavior: none;
+    font-family: 'Cairo', sans-serif;
+}
+
+::webkit-scrollbar {
+    display: none;
+}
+
+a,
+.open-menu {
+    color: #22264b;
+    text-decoration: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
+    font-size: 1.4rem;
+}
+
+.button {
+    cursor: pointer;
+    display: inline-block;
+    background: #22264b;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+a:hover {
+    color: #e7bb6a !important;
+    text-decoration: none;
+}
+
+.separator {
+    content: "";
+    width: 5rem;
+    height: 0.125rem;
+    margin: 1.25rem auto;
+    background: #22264b;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 8px;
+    background: #ccc;
+    z-index: 3000;
+}
+
+.loading-bar .progress-bar {
+    height: 8px;
+    background: #e7bb6a;
+    width: 0%;
+}
+
+.page-container {
+    margin-top: 20rem;
+}
+
+.rounded-item {
+    border-radius: 20px !important;
+}
+
+.btn-medium {
+    width: 90px;
+}
+
+.comment-body {
+    flex: 1;
+    border: 1px solid #f4f4f4;
+    border-radius: 9px;
+    padding: 1rem 1rem;
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'user/home';
-$route['user'] = 'user/home';
+$route['home'] = 'user/home';
 //$route['user/members'] = 'user/index';
 $route['admin'] = 'admin/login';
 $route['music'] = 'music/index';
@@ -62,25 +62,27 @@ $route['videos/delete'] = 'videos/delete';
 $route['artists'] = 'artists/index';
 $route['artists/insert'] = 'artists/insert';
 $route['artists/delete'] = 'artists/delete';
+$route['dashboard'] = 'user/connect/index';
+$route['uploadMusic'] = 'user/uploads/index';
 $route['music/(:any)'] = 'admin/music/view/$1';
 $route['videos/(:any)'] = 'admin/videos/view/$1';
 $route['artists/(:any)'] = 'admin/artists/view/$1';
-$route['reviews'] = 'reviews/index';
+$route['reviews'] = 'user/reviews/index';
 $route['reviews/(:any)'] = 'user/reviews/view/$1';
 $route['videos'] = 'user/videos/index';
 $route['videos/(:any)'] = 'user/videos/view/$1';
 $route['artists'] = 'user/artists/index';
 $route['artists/(:any)'] = 'user/artists/view/$1';
-$route['members'] = 'members/index';
+$route['members'] = 'user/members/index';
 $route['members/(:any)'] = 'user/members/view/$1';
-$route['members/edit'] = 'user/members/edit';
+$route['editInfo'] = 'user/members/edit';
 $route['friends'] = 'friends/index';
 $route['friends/(:any)'] = 'user/friends/view/$1';
 $route['chat'] = 'user/chat/index';
 $route['chat/(:any)'] = 'user/chat/index/$1';
 $route['chats'] = 'user/chats/index';
 $route['chats/(:any)'] = 'user/chats/index/$1';
-$route['mp3'] ='admin/mp3/index';
+$route['mp3'] = 'admin/mp3/index';
 $route['mp3/insert'] = 'mp3/insert';
 $route['mp3/edit'] = 'mp3/edit';
 $route['mp3/delete'] = 'mp3/delete';

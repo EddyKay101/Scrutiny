@@ -7,7 +7,9 @@ class Chats extends CI_Controller
 		$this->load->model('User_model');
 		$this->load->model('Chats_model');
 		$this->load->model('Notification_model');
-		$this->load->helper('time');		
+		$this->load->model('Mp3_model');
+		$this->load->helper('time');	
+
 	}
 
 	public function index($user_id = null)
@@ -26,18 +28,19 @@ class Chats extends CI_Controller
 		$data['notification'] = $this->Notification_model->get_notification_count($user_id);
 		$data['status'] =  "read";
 		$data['read'] = "unread";
-
+		$data['tracks'] = $this->Mp3_model->get_tracks();
 		$data['chat_count'] = $this->Chats_model->get_chat_message_count($user_id);	
 		$data['pic'] = $this->User_model->get_users($user_ids);		
 		$this->load->view('user/templates/header_view_subpage', $data);
 		$this->load->view('user/chats_view', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/mp3_view', $data);
+		$this->load->view('user/templates/footer_view');
 
 	}
 
 	public function ajax_add_chat_message(){
 
-		/* Things to be poseted
+		/* Things to be posted
 		 * chat_id
 		 * user_id
 		 * chat_message_contents
@@ -81,17 +84,20 @@ class Chats extends CI_Controller
 					$img = "blank_user.png";
 				}
 				$date = strtotime($cht->date_created);
-				$div_class = ($this->session->userdata('user_id') == $cht->user_id) ? 'class="chat-message right"' : 'class="chat-message left"';
+				$div_class = ($this->session->userdata('user_id') == $cht->user_id) ? 'class="chat-message chat-right"' : 'class="chat-message chat-left"';
 				$a_class = ($this->session->userdata('user_id') == $cht->user_id) ? 'class="message-author"' : 'class="message-author_left"';
 				$span_class = ($this->session->userdata('user_id') == $cht->user_id) ? 'class="message-date"' : 'class="message-date_left"';
 				$c_html .='<div ' . $div_class. '>
-							<img class="message-avatar" src="'.base_url().'/public/user_img/'.$img.'" alt="" >
-							<div class="message">
-                                            <a ' . $a_class. ' href="'.site_url('/members/'.$cht->user_id).'">'.$cht->username.'</a>
-                      <span ' . $span_class. '> '.date("F j, Y, g:i a",$date).' </span>
-                                            <span class="message-content">'
-                      							.$cht->chat_message_content.'
-                                            </span>
+							
+							
+							<div class="message mt-3">
+                                           <div class="message-span-container">
+												   <span class="message-content">'
+												   .$cht->chat_message_content.'
+										   		   </span>
+											
+										   </div>
+                                            
                                         </div></div>';
 			}
 			
@@ -132,7 +138,7 @@ class Chats extends CI_Controller
 		//$data['pic'] = $this->User_model->get_users($user_id);
 		$this->load->view('user/templates/header_view_subpage', $data);
 		$this->load->view('user/chat_general', $data);
-		$this->load->view('user/templates/footer_view_subpage');
+		$this->load->view('user/templates/footer_view');
 
 	}
 
